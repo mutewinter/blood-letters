@@ -3,8 +3,6 @@
 public var enemyPrefabs : GameObject[];
 
 function Start () {
-  Debug.Log('Game on');
-
   var goblin = enemyPrefabs[0];
   for (var i = 0; i < 8; i++) {
     var position = new Vector3(

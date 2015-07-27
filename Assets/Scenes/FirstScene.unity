@@ -175,6 +175,25 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2ccdc98137ad449cba9d60bbbcd06be8, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1449480123 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 138520, guid: d498863238d734580ad5ca8b873dc675, type: 2}
+  m_PrefabInternal: {fileID: 226641383}
+--- !u!114 &1449480128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1449480123}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 123e54a9fa3204f4a8ebb7ecb3d69c8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1
+  moveSpeed: 2
+  totalExperience: 0
+  level: 1
 --- !u!1 &1520622277
 GameObject:
   m_ObjectHideFlags: 0
@@ -272,60 +291,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36f50c32e29d94b0e91636f7be02765a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1001 &1525917449
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 465502, guid: 2ccdc98137ad449cba9d60bbbcd06be8, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 465502, guid: 2ccdc98137ad449cba9d60bbbcd06be8, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 465502, guid: 2ccdc98137ad449cba9d60bbbcd06be8, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 465502, guid: 2ccdc98137ad449cba9d60bbbcd06be8, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 465502, guid: 2ccdc98137ad449cba9d60bbbcd06be8, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 465502, guid: 2ccdc98137ad449cba9d60bbbcd06be8, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 465502, guid: 2ccdc98137ad449cba9d60bbbcd06be8, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 465502, guid: 2ccdc98137ad449cba9d60bbbcd06be8, type: 2}
-      propertyPath: m_RootOrder
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 132226, guid: 2ccdc98137ad449cba9d60bbbcd06be8, type: 2}
-      propertyPath: m_Name
-      value: Goblin (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 471442, guid: 2ccdc98137ad449cba9d60bbbcd06be8, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: .495000005
-      objectReference: {fileID: 0}
-    - target: {fileID: 471442, guid: 2ccdc98137ad449cba9d60bbbcd06be8, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: .495999992
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 2ccdc98137ad449cba9d60bbbcd06be8, type: 2}
-  m_IsPrefabParent: 0
+  enemyPrefabs:
+  - {fileID: 132226, guid: 2ccdc98137ad449cba9d60bbbcd06be8, type: 2}
 --- !u!1 &1788451250 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 130558, guid: d498863238d734580ad5ca8b873dc675, type: 2}
