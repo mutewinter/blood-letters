@@ -1,25 +1,21 @@
 ﻿#pragma strict
 
-public var health = 5;
-public var worthExperience = 101;
+class Goblin extends Character {
+  function Start () {
+    worthExperience = 30;
+  }
 
-function Start () {
+  function Update () {
 
-}
+  }
 
-function Update () {
+  function OnTriggerEnter2D(other: Collider2D) {
+    var r = GetComponent.<Renderer>();
 
-}
-
-function OnTriggerEnter2D(other: Collider2D) {
-  var r = GetComponent.<Renderer>();
-  var otherGameObject = other.GetComponentInParent(Player);
-  if (otherGameObject) {
-    health -= otherGameObject.damage;
+    other.GetComponentInParent(Player).SendMessage('hit', this);
     if (health <= 0 ) {
       // Died!
       r.material.color = Color.grey;
-      otherGameObject.gainExperience(worthExperience);
     } else {
       // Damaged
       var originalColor = r.material.color;

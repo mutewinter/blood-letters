@@ -1,23 +1,33 @@
 ﻿#pragma strict
 
-public var damage = 1.0;
-public var moveSpeed = 2.0;  // Units per second
-public var totalExperience = 0;
-public var level = 1;
+class Player extends Character {
+  public var totalExperience = 0;
 
-function Start () {
+  function get level() : int {
+    return Mathf.Floor(totalExperience / 100) || 1;
+  }
+  function set level(value : int) {
+    level = value;
+  }
 
-}
+  function get damage() : float {
+    return level * 1.5;
+  }
+  function set damage(value : float) {
+    damage = value;
+  }
 
-function Update () {
+  function Start () {
+    moveSpeed = 2.0;
+  }
 
-}
+  function Update () {
 
-function gainExperience(experience: int) {
-  totalExperience += experience;
-  if (totalExperience > 100) {
-    damage += 1.0;
-    level++;
-    totalExperience = 0;
+  }
+
+  function gainExperience(experience: int) {
+    totalExperience += experience;
+    Debug.Log('Gained ' + experience + ' now level ' + level);
   }
 }
+
