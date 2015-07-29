@@ -291,8 +291,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 912107721}
   _level: 0
-  _damage: 0
+  _baseDamage: 0
+  _weaponDamage: 0
   _kills: 0
+  _experience: 0
+  _experienceNeededForNextLevel: 0
 --- !u!1 &1449480123 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 138520, guid: d498863238d734580ad5ca8b873dc675, type: 2}
@@ -313,7 +316,8 @@ MonoBehaviour:
   worthExperience: 10
   _damage: 1
   _kills: 0
-  weaponDamage: 0
+  _baseDamage: 0
+  _weaponDamage: 0
   _totalExperience: 1
 --- !u!1 &1520622277
 GameObject:
