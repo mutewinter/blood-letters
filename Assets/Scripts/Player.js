@@ -2,7 +2,7 @@
 
 class Player extends Character {
   public var totalExperience = 0;
-  public var weapon: Bow;
+  public var weaponDamage = 0;
 
   function get level() : int {
     return Mathf.Floor(totalExperience / 100) || 1;
@@ -12,11 +12,7 @@ class Player extends Character {
   }
 
   function get damage() : float {
-    if (weapon) {
-      return (level * 1.5) + weapon.damage;
-    } else {
-      return level * 1.5;
-    }
+    return (level * 1.5) + weaponDamage;
   }
   function set damage(value : float) {
     damage = value;
@@ -42,8 +38,7 @@ class Player extends Character {
   }
 
   function pickUp(item: Bow) {
-    Debug.Log('Got bow!');
-    weapon = item;
+    weaponDamage = item.damage;
   }
 }
 
