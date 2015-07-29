@@ -62,6 +62,8 @@ class Player extends Character {
       statusManager.level = level;
       statusManager.damage = damage;
       statusManager.kills = kills;
+      statusManager.experience = totalExperience;
+      statusManager.experienceNeededForNextLevel = 100;
     } else {
       Debug.Log('No status manager');
     }
