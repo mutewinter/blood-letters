@@ -148,10 +148,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 123e54a9fa3204f4a8ebb7ecb3d69c8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
   moveSpeed: 2
+  health: 1
+  worthExperience: 10
+  _damage: 1
   totalExperience: 0
-  level: 1
 --- !u!1 &1520622277
 GameObject:
   m_ObjectHideFlags: 0
@@ -202,7 +203,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: .192156866, g: .301960796, b: .474509805, a: .0196078438}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
