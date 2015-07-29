@@ -42,6 +42,7 @@ class Player extends Character {
   }
 
   function pickUp(item: Bow) {
+    Debug.Log('Got bow!');
     weapon = item;
   }
 }

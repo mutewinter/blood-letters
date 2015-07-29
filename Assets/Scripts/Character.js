@@ -25,7 +25,7 @@ class Character extends MonoBehaviour {
 
   function hit(other: Character) {
     other.health -= damage;
-    Debug.Log('Hit' + other + ' for ' + damage + '. ' + 'HP: ' + health);
+    Debug.Log('Hit' + other + ' for ' + damage + '. ' + 'HP: ' + other.health);
     if (other.health <= 0) {
       this.gainExperience(other.worthExperience);
     }
