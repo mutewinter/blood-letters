@@ -11,10 +11,11 @@ class Goblin extends Character {
   }
 
   function OnTriggerEnter2D(other: Collider2D) {
+    if (health <= 0) { return; }
     var r = GetComponent.<Renderer>();
 
     other.GetComponentInParent(Player).SendMessage('hit', this);
-    if (health <= 0 ) {
+    if (health <= 0) {
       // Died!
       r.material.color = Color.grey;
     } else {
