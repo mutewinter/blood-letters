@@ -124,7 +124,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 418386, guid: d498863238d734580ad5ca8b873dc675, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 138520, guid: d498863238d734580ad5ca8b873dc675, type: 2}
       propertyPath: m_Name
@@ -153,6 +153,7 @@ MonoBehaviour:
   worthExperience: 10
   _damage: 1
   totalExperience: 0
+  damageBonus: 0
 --- !u!1 &1520622277
 GameObject:
   m_ObjectHideFlags: 0
@@ -214,7 +215,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 3
+  orthographic size: 2
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
