@@ -5,42 +5,54 @@ class StatusManager extends MonoBehaviour {
 
   var _level = 0;
   function get level() { return _level; }
-  function set level(value: int) { _level = value; updateStatus(); }
+  function set level(value: int) { _level = value; update(); }
 
-  var _damage = 0;
-  function get damage() { return _damage; }
-  function set damage(value: int) { _damage = value; updateStatus(); }
+  var _baseDamage = 0;
+  function get baseDamage() { return _baseDamage; }
+  function set baseDamage(value: int) { _baseDamage = value; update(); }
+
+  var _weaponDamage = 0;
+  function get weaponDamage() { return _weaponDamage; }
+  function set weaponDamage(value: int) { _weaponDamage = value; update(); }
 
   var _kills = 0;
   function get kills() { return _kills; }
-  function set kills(value: int) { _kills = value; updateStatus(); }
+  function set kills(value: int) { _kills = value; update(); }
 
   var _experience = 0;
   function get experience() { return _experience; }
-  function set experience(value: int) { _experience = value; updateStatus(); }
+  function set experience(value: int) { _experience = value; update(); }
 
   var _experienceNeededForNextLevel = 0;
   function get experienceNeededForNextLevel() {
     return _experienceNeededForNextLevel;
   }
   function set experienceNeededForNextLevel(value: int) {
-    _experienceNeededForNextLevel = value; updateStatus();
+    _experienceNeededForNextLevel = value; update();
   }
 
   function Start () {
-    updateStatus();
+    update();
   }
 
   function Update () {
   }
 
-  function updateStatus() {
+  function update() {
     var levelText = String.Format(
       'Level: {0} ({1}/{2} XP)', level, experience,
       experienceNeededForNextLevel
     );
+
+    var damageText = '';
+    if (weaponDamage) {
+      damageText = String.Format('Damage: {0} + {1}', baseDamage, weaponDamage);
+    } else {
+      damageText = String.Format('Damage: {0}', baseDamage);
+    }
+
     text.text = String.Format(
-      '{0}\nDamage: {1}\nKills: {2}', levelText, damage, kills
+      '{0}\n{1}\nKills: {2}', levelText, damageText, kills
     );
   }
 }

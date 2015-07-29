@@ -1,14 +1,22 @@
 ﻿#pragma strict
 
 class Player extends Character {
-  public var weaponDamage = 0;
+  var _baseDamage = 0;
+  function get baseDamage() { return (level * 1.5); }
+
+  var _weaponDamage = 0;
+  function get weaponDamage() { return _weaponDamage; }
+  function set weaponDamage(value: int) {
+    _weaponDamage = value;
+    updateStatusManager();
+  }
 
   var _totalExperience = 1;
   function get totalExperience() {
     return _totalExperience;
   }
 
-  function set kills(value: int) { 
+  function set kills(value: int) {
     _kills = value;
     updateStatusManager();
   }
@@ -26,10 +34,7 @@ class Player extends Character {
   }
 
   function get damage() : float {
-    return (level * 1.5) + weaponDamage;
-  }
-  function set damage(value : float) {
-    damage = value;
+    return baseDamage + weaponDamage;
   }
 
   function Start () {
@@ -60,10 +65,11 @@ class Player extends Character {
     var statusManager = canvas.GetComponentInChildren(StatusManager);
     if (statusManager) {
       statusManager.level = level;
-      statusManager.damage = damage;
+      statusManager.baseDamage = baseDamage;
       statusManager.kills = kills;
       statusManager.experience = totalExperience;
       statusManager.experienceNeededForNextLevel = 100;
+      statusManager.weaponDamage = weaponDamage;
     } else {
       Debug.Log('No status manager');
     }
