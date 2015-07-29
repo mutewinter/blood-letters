@@ -26,8 +26,14 @@ class Player extends Character {
   }
 
   function gainExperience(experience: int) {
+    var startLevel = level;
     totalExperience += experience;
-    Debug.Log('Gained ' + experience + ' now level ' + level);
+    Debug.Log('+' + experience + 'XP');
+    if (startLevel != level) {
+      Debug.Log('ZTARG!');
+      Debug.Log('Level: ' + level);
+      Debug.Log('Damage: ' + damage);
+    }
   }
 }
 
