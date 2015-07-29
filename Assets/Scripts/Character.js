@@ -13,6 +13,10 @@ class Character extends MonoBehaviour {
     damage = value;
   }
 
+  public var _kills = 0;
+  function get kills() { return _kills; }
+  function set kills(value: int) { _kills = value; }
+
   function Start () {
 
   }
@@ -25,9 +29,10 @@ class Character extends MonoBehaviour {
 
   function hit(other: Character) {
     other.health -= damage;
-    Debug.Log('Hit' + other + ' for ' + damage + '. ' + 'HP: ' + other.health);
+    Debug.Log('Hit ' + other + ' for ' + damage + '. ' + 'HP: ' + other.health);
     if (other.health <= 0) {
       this.gainExperience(other.worthExperience);
+      kills++;
     }
   }
 }

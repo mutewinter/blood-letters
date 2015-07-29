@@ -1,8 +1,22 @@
 ﻿#pragma strict
 
 class Player extends Character {
-  public var totalExperience = 0;
   public var weaponDamage = 0;
+
+  var _totalExperience = 0;
+  function get totalExperience() {
+    return _totalExperience;
+  }
+
+  function set kills(value: int) { 
+    _kills = value;
+    updateStatusManager();
+  }
+
+  function set totalExperience(value: int) {
+    _totalExperience = value;
+    updateStatusManager();
+  }
 
   function get level() : int {
     return Mathf.Floor(totalExperience / 100) || 1;
@@ -20,10 +34,10 @@ class Player extends Character {
 
   function Start () {
     moveSpeed = 2.0;
+    updateStatusManager();
   }
 
   function Update () {
-
   }
 
   function gainExperience(experience: int) {
@@ -39,6 +53,18 @@ class Player extends Character {
 
   function pickUp(item: Bow) {
     weaponDamage = item.damage;
+  }
+
+  function updateStatusManager() {
+    var canvas = GameObject.FindWithTag('HUD');
+    var statusManager = canvas.GetComponentInChildren(StatusManager);
+    if (statusManager) {
+      statusManager.level = level;
+      statusManager.damage = damage;
+      statusManager.kills = kills;
+    } else {
+      Debug.Log('No status manager');
+    }
   }
 }
 
