@@ -4,7 +4,7 @@ class Goblin extends Character {
   public var possibleLoot: GameObject[];
 
   function Start () {
-    worthExperience = 30;
+    worthExperience = 45;
     health = 5;
   }
 

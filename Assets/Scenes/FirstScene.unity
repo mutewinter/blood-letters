@@ -314,7 +314,7 @@ MonoBehaviour:
   _damage: 1
   _kills: 0
   weaponDamage: 0
-  _totalExperience: 0
+  _totalExperience: 1
 --- !u!1 &1520622277
 GameObject:
   m_ObjectHideFlags: 0

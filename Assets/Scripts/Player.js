@@ -3,7 +3,7 @@
 class Player extends Character {
   public var weaponDamage = 0;
 
-  var _totalExperience = 0;
+  var _totalExperience = 1;
   function get totalExperience() {
     return _totalExperience;
   }
@@ -19,7 +19,7 @@ class Player extends Character {
   }
 
   function get level() : int {
-    return Mathf.Floor(totalExperience / 100) || 1;
+    return Mathf.CeilToInt(totalExperience / 100F);
   }
   function set level(value : int) {
     level = value;
