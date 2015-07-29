@@ -82,8 +82,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce0dc738547d84209b068ac37c9fe670, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 3
-  worthExperience: 10
+  moveSpeed: 1
+  health: 1
+  worthExperience: 0
+  _damage: 1
 --- !u!212 &21219368
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -119,7 +121,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 0}
       propertyPath: worthExperience
-      value: 10
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

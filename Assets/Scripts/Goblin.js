@@ -3,6 +3,7 @@
 class Goblin extends Character {
   function Start () {
     worthExperience = 30;
+    health = 5;
   }
 
   function Update () {
