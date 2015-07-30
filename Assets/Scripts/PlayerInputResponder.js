@@ -1,7 +1,7 @@
 ﻿#pragma strict
 
-private var nextFire : float = 0.0;
-private var bulletSpeed : float = 50.0;
+private var nextFire : float = 0;
+private var bulletSpeed : float = 100;
 
 function Start () {
 }
@@ -16,24 +16,23 @@ function Update () {
     targetPos.x = targetPos.x * bulletSpeed;
     targetPos.y = targetPos.y * bulletSpeed;
 
-    //spawning the bullet at position
     var bulletPrefab = Instantiate(
-      player.bulletPrefab, transform.position,transform.rotation
+      player.bulletPrefab, transform.position, Quaternion.identity
     );
 
     bulletPrefab.GetComponent.<Bullet>().player = player;
 
-    //add force to the spawned objected
     bulletPrefab.GetComponent.<Rigidbody2D>().AddForce(targetPos);
   }
 
   if (Input.GetButton('Horizontal') || Input.GetButton('Vertical')) {
-    var moveDirection = Vector2(
-      Input.GetAxis('Horizontal'), Input.GetAxis('Vertical')
-    );
+    var xTranslation = Input.GetAxis('Horizontal');
+    var yTranslation = Input.GetAxis('Vertical');
+
+    var target = transform.position + Vector2(xTranslation, yTranslation);
 
     transform.position = Vector2.MoveTowards(
-      transform.position, moveDirection, player.moveSpeed * Time.deltaTime
+      transform.position, target, player.moveSpeed * Time.deltaTime
     );
   }
 }
