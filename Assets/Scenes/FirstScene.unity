@@ -317,7 +317,7 @@ MonoBehaviour:
   _damage: 1
   _kills: 0
   bulletPrefab: {fileID: 139770, guid: 61a96306711a64ee79006041f33f86a8, type: 2}
-  fireRate: .5
+  fireRate: .300000012
   _baseDamage: 0
   _weaponDamage: 0
   _totalExperience: 1
