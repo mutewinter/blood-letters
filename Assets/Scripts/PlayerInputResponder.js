@@ -13,8 +13,11 @@ function Update () {
     nextFire = Time.time + player.fireRate;
 
     var targetPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-    targetPos.x = targetPos.x * bulletSpeed;
-    targetPos.y = targetPos.y * bulletSpeed;
+    // Ensure we fire relative to the player, not the camera.
+    targetPos -= transform.position;
+
+    targetPos.x += targetPos.x * bulletSpeed;
+    targetPos.y += targetPos.y * bulletSpeed;
 
     var bulletPrefab = Instantiate(
       player.bulletPrefab, transform.position, Quaternion.identity
