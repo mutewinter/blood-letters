@@ -16,7 +16,12 @@ class Goblin extends Character {
     if (health <= 0) { return; }
     var r = GetComponent.<Renderer>();
 
-    other.GetComponentInParent(Player).SendMessage('hit', this);
+    var bullet = other.GetComponent.<Bullet>();
+
+    if (bullet) {
+      bullet.player.SendMessage('hit', this);
+    }
+
     if (health <= 0) {
       // Died!
       this.die();

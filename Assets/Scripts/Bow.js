@@ -11,6 +11,9 @@ function Update () {
 }
 
 function OnTriggerEnter2D(other: Collider2D) {
-  other.GetComponentInParent(Player).SendMessage('pickUp', this);
-  Destroy(gameObject);
+  var player = other.GetComponentInParent(Player);
+  if (player) {
+    player.SendMessage('pickUp', this);
+    Destroy(gameObject);
+  }
 }
