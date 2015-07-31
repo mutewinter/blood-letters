@@ -2,9 +2,11 @@
 
 public var player: Player;
 public var damage = 0;
+public var secondsToLive = 0.5;
 
 function Start () {
-
+  yield WaitForSeconds(secondsToLive);
+  Destroy(gameObject);
 }
 
 function Update () {
