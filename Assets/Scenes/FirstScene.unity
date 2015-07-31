@@ -314,7 +314,6 @@ MonoBehaviour:
   moveSpeed: 2
   health: 1
   worthExperience: 10
-  DamageText: {fileID: 0}
   _damage: 1
   _kills: 0
   bulletPrefab: {fileID: 139770, guid: 61a96306711a64ee79006041f33f86a8, type: 2}
