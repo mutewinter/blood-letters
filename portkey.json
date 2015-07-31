@@ -1,0 +1,5 @@
+{
+  "Assets/Scripts/**.js": {
+    "type": "script"
+  }
+}
