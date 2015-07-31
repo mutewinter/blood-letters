@@ -4,7 +4,7 @@ import System.Collections.Generic;
 
 public var player: Player;
 public var damage = 0;
-public var secondsToLive = 0.5;
+public var secondsToLive = 0.8;
 public var DamageText: GameObject;
 
 function Start () {
