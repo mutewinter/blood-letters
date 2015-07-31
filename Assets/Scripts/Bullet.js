@@ -18,4 +18,5 @@ function hit(other: Character) {
     player.gainExperience(other.worthExperience);
     player.kills++;
   }
+  Destroy(gameObject);
 }
