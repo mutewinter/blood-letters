@@ -39,5 +39,12 @@ function Update () {
     transform.position = Vector2.MoveTowards(
       transform.position, target, player.moveSpeed * Time.deltaTime
     );
+
+    var mainCamera = GameObject.FindWithTag('MainCamera');
+    mainCamera.transform.position = Vector3(
+      transform.position.x,
+      transform.position.y,
+      mainCamera.transform.position.z
+    );
   }
 }
