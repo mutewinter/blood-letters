@@ -12,12 +12,9 @@ function Update () {
   if (Input.GetMouseButton(0) && Time.time > nextFire) {
     nextFire = Time.time + player.fireRate;
 
-    var targetPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-    // Ensure we fire relative to the player, not the camera.
-    targetPos -= transform.position;
-
-    targetPos.x += targetPos.x * bulletSpeed;
-    targetPos.y += targetPos.y * bulletSpeed;
+    var playerPosition = Camera.main.WorldToScreenPoint(transform.position);
+    var direction = (Input.mousePosition - playerPosition).normalized;
+    direction.z = 0;
 
     var bulletPrefab = Instantiate(
       player.bulletPrefab, transform.position, Quaternion.identity
@@ -27,7 +24,9 @@ function Update () {
     bullet.player = player;
     bullet.damage = player.damage;
 
-    bulletPrefab.GetComponent.<Rigidbody2D>().AddForce(targetPos);
+    bulletPrefab.GetComponent.<Rigidbody2D>().AddForce(
+      direction * bulletSpeed
+    );
   }
 
   if (Input.GetButton('Horizontal') || Input.GetButton('Vertical')) {
