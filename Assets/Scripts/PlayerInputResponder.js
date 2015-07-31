@@ -23,7 +23,9 @@ function Update () {
       player.bulletPrefab, transform.position, Quaternion.identity
     );
 
-    bulletPrefab.GetComponent.<Bullet>().player = player;
+    var bullet = bulletPrefab.GetComponent.<Bullet>();
+    bullet.player = player;
+    bullet.damage = player.damage;
 
     bulletPrefab.GetComponent.<Rigidbody2D>().AddForce(targetPos);
   }

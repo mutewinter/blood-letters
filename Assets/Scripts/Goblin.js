@@ -19,7 +19,7 @@ class Goblin extends Character {
     var bullet = other.GetComponent.<Bullet>();
 
     if (bullet) {
-      bullet.player.SendMessage('hit', this);
+      bullet.SendMessage('hit', this);
     }
 
     if (health <= 0) {
