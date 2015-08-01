@@ -39,7 +39,7 @@ class Goblin extends Character {
 
     // Gray for a sec
     r.material.color = Color.grey;
-    yield WaitForSeconds(0.5);
+    animateDeath();
 
     // Then loot
     var randomLootIndex = Random.Range(0, possibleLoot.length);
@@ -51,7 +51,14 @@ class Goblin extends Character {
     lootPosition.y += 0.3;
     Instantiate(loot, lootPosition, Quaternion.identity);
 
-    // Time to die
+    // TODO: Figure out how to wait for end of death animation
+    yield WaitForSeconds(2);
+
     Destroy(gameObject);
+  }
+
+  function animateDeath() {
+    var animator = GetComponent.<Animator>();
+    animator.SetBool('isDying', true);
   }
 }
