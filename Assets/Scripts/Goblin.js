@@ -56,13 +56,6 @@ class Goblin extends Character {
   function animateHit() {
     var animator = GetComponent.<Animator>();
     animator.SetTrigger('isHit');
-
-    // TODO Do color change in animation
-    var r = GetComponent.<Renderer>();
-    var originalColor = r.material.color;
-    r.material.color = Color.red;
-    yield WaitForSeconds(.2);
-    r.material.color = originalColor;
   }
 
   function animateDeath() {
