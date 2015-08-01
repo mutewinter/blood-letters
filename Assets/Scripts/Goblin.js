@@ -55,6 +55,7 @@ class Goblin extends Character {
   }
 
   function deathAnimationComplete() {
+    onDied();
     Destroy(gameObject);
   }
 }

@@ -35,5 +35,11 @@ class Character extends MonoBehaviour {
       kills++;
     }
   }
+
+  function onDied() {
+    var mainCamera = GameObject.FindWithTag('MainCamera');
+    var gameManager = mainCamera.GetComponent.<GameManager>();
+    gameManager.characterDied(this);
+  }
 }
 
