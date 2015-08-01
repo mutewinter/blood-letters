@@ -42,11 +42,6 @@ class Goblin extends Character {
     var lootPosition = transform.position;
     lootPosition.y += 0.3;
     Instantiate(loot, lootPosition, Quaternion.identity);
-
-    // TODO: Figure out how to wait for end of death animation
-    yield WaitForSeconds(2);
-
-    Destroy(gameObject);
   }
 
   function animateHit() {
@@ -57,5 +52,9 @@ class Goblin extends Character {
   function animateDeath() {
     var animator = GetComponent.<Animator>();
     animator.SetBool('isDying', true);
+  }
+
+  function deathAnimationComplete() {
+    Destroy(gameObject);
   }
 }
