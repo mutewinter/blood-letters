@@ -14,7 +14,6 @@ class Goblin extends Character {
 
   function OnTriggerEnter2D(other: Collider2D) {
     if (health <= 0) { return; }
-    var r = GetComponent.<Renderer>();
 
     var bullet = other.GetComponent.<Bullet>();
 
@@ -26,11 +25,8 @@ class Goblin extends Character {
       // Died!
       this.die();
     } else {
+      animateHit();
       // Damaged
-      var originalColor = r.material.color;
-      r.material.color = Color.red;
-      yield WaitForSeconds(.2);
-      r.material.color = originalColor;
     }
   }
 
@@ -55,6 +51,18 @@ class Goblin extends Character {
     yield WaitForSeconds(2);
 
     Destroy(gameObject);
+  }
+
+  function animateHit() {
+    var animator = GetComponent.<Animator>();
+    animator.SetTrigger('isHit');
+
+    // TODO Do color change in animation
+    var r = GetComponent.<Renderer>();
+    var originalColor = r.material.color;
+    r.material.color = Color.red;
+    yield WaitForSeconds(.2);
+    r.material.color = originalColor;
   }
 
   function animateDeath() {
