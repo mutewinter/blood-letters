@@ -87,52 +87,6 @@ NavMeshSettings:
     cellSize: .166666672
     manualCellSize: 0
   m_NavMeshData: {fileID: 0}
---- !u!1001 &226641383
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 418386, guid: d498863238d734580ad5ca8b873dc675, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 418386, guid: d498863238d734580ad5ca8b873dc675, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 418386, guid: d498863238d734580ad5ca8b873dc675, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 418386, guid: d498863238d734580ad5ca8b873dc675, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 418386, guid: d498863238d734580ad5ca8b873dc675, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 418386, guid: d498863238d734580ad5ca8b873dc675, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 418386, guid: d498863238d734580ad5ca8b873dc675, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 418386, guid: d498863238d734580ad5ca8b873dc675, type: 2}
-      propertyPath: m_RootOrder
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 138520, guid: d498863238d734580ad5ca8b873dc675, type: 2}
-      propertyPath: m_Name
-      value: player
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: d498863238d734580ad5ca8b873dc675, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1 &754817697
 GameObject:
   m_ObjectHideFlags: 0
@@ -296,31 +250,6 @@ MonoBehaviour:
   _kills: 0
   _experience: 0
   _experienceNeededForNextLevel: 0
---- !u!1 &1449480123 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 138520, guid: d498863238d734580ad5ca8b873dc675, type: 2}
-  m_PrefabInternal: {fileID: 226641383}
---- !u!114 &1449480128
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1449480123}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 123e54a9fa3204f4a8ebb7ecb3d69c8f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 2
-  health: 1
-  worthExperience: 10
-  _damage: 1
-  _kills: 0
-  bulletPrefab: {fileID: 139770, guid: 61a96306711a64ee79006041f33f86a8, type: 2}
-  fireRate: .300000012
-  _baseDamage: 0
-  _weaponDamage: 0
-  _totalExperience: 1
 --- !u!1 &1520622277
 GameObject:
   m_ObjectHideFlags: 0
@@ -420,23 +349,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyPrefabs:
   - {fileID: 132226, guid: 2ccdc98137ad449cba9d60bbbcd06be8, type: 2}
---- !u!1 &1788451250 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 130558, guid: d498863238d734580ad5ca8b873dc675, type: 2}
-  m_PrefabInternal: {fileID: 226641383}
---- !u!61 &1788451251
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1788451250}
-  m_Enabled: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Size: {x: .0900000036, y: .180000007}
+  player: {fileID: 161910, guid: 4e9ed2063fe8a45c5b86343e0a85ec0d, type: 2}
 --- !u!1 &1892368757
 GameObject:
   m_ObjectHideFlags: 0
