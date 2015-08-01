@@ -31,10 +31,6 @@ class Goblin extends Character {
   }
 
   function die() {
-    var r = GetComponent.<Renderer>();
-
-    // Gray for a sec
-    r.material.color = Color.grey;
     animateDeath();
 
     // Then loot
