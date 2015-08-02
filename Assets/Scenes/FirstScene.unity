@@ -349,6 +349,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyPrefabs:
   - {fileID: 132226, guid: 2ccdc98137ad449cba9d60bbbcd06be8, type: 2}
+  - {fileID: 114238, guid: 94654a6ce89914fbe9ec5bef092d54cb, type: 2}
   player: {fileID: 161910, guid: 4e9ed2063fe8a45c5b86343e0a85ec0d, type: 2}
 --- !u!1 &1892368757
 GameObject:

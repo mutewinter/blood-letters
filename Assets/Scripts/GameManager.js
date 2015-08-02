@@ -12,14 +12,14 @@ function Start () {
 }
 
 function spawnRandomEnemy() {
-  var goblin = enemyPrefabs[0];
+  var enemyPrefab = enemyPrefabs[Random.Range(0, enemyPrefabs.length)];
 
   var position = new Vector3(
     Random.Range(-2.0F, 2.0F),
     Random.Range(-2.0F, 2.0F),
     0
   );
-  Instantiate(goblin, position, Quaternion.identity);
+  Instantiate(enemyPrefab, position, Quaternion.identity);
 }
 
 function Update () {

@@ -12,27 +12,7 @@ class Goblin extends Character {
 
   }
 
-  function OnTriggerEnter2D(other: Collider2D) {
-    if (health <= 0) { return; }
-
-    var bullet = other.GetComponent.<Bullet>();
-
-    if (bullet) {
-      bullet.SendMessage('hit', this);
-    }
-
-    if (health <= 0) {
-      // Died!
-      this.die();
-    } else {
-      animateHit();
-      // Damaged
-    }
-  }
-
-  function die() {
-    animateDeath();
-
+  function onDied() {
     // Then loot
     var randomLootIndex = Random.Range(0, possibleLoot.length);
 
@@ -42,20 +22,5 @@ class Goblin extends Character {
     var lootPosition = transform.position;
     lootPosition.y += 0.3;
     Instantiate(loot, lootPosition, Quaternion.identity);
-  }
-
-  function animateHit() {
-    var animator = GetComponent.<Animator>();
-    animator.SetTrigger('isHit');
-  }
-
-  function animateDeath() {
-    var animator = GetComponent.<Animator>();
-    animator.SetBool('isDying', true);
-  }
-
-  function deathAnimationComplete() {
-    onDied();
-    Destroy(gameObject);
   }
 }

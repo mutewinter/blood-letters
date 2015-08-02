@@ -17,6 +17,9 @@ function Update () {
 }
 
 function hit(other: Character) {
+  // Can't hit the firee.
+  if (other == player) { return; }
+
   other.health -= damage;
   Debug.Log('Hit ' + other + ' for ' + damage + '. ' + 'HP: ' + other.health);
 

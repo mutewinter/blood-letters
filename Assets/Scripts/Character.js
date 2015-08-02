@@ -27,19 +27,57 @@ class Character extends MonoBehaviour {
 
   function gainExperience(experience: int) {}
 
-  function hit(other: Character) {
-    other.health -= damage;
-    Debug.Log('Hit ' + other + ' for ' + damage + '. ' + 'HP: ' + other.health);
-    if (other.health <= 0) {
-      this.gainExperience(other.worthExperience);
-      kills++;
+  function OnTriggerEnter2D(other: Collider2D) {
+    if (health <= 0) { return; }
+
+    var bullet = other.GetComponent.<Bullet>();
+
+    if (bullet) {
+      bullet.SendMessage('hit', this);
+
+      if (health <= 0) {
+        // Died!
+        this.die();
+      } else {
+        animateHit();
+        // Damaged
+      }
     }
   }
 
-  function onDied() {
+  function die() {
+    animateDeath();
+  }
+
+  function animateHit() {
+    var animator = GetComponent.<Animator>();
+    if (animator) {
+      animator.SetTrigger('isHit');
+    }
+  }
+
+  function animateDeath() {
+    var animator = GetComponent.<Animator>();
+    if (animator) {
+      animator.SetBool('isDying', true);
+    } else {
+      cleanUpAfterDeath();
+    }
+  }
+
+  function cleanUpAfterDeath() {
+    onDied();
     var mainCamera = GameObject.FindWithTag('MainCamera');
     var gameManager = mainCamera.GetComponent.<GameManager>();
     gameManager.characterDied(this);
+    Destroy(gameObject);
   }
+
+  function deathAnimationComplete() {
+    cleanUpAfterDeath();
+  }
+
+  // For subclasses to override.
+  function onDied() { }
 }
 
