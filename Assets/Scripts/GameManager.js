@@ -4,15 +4,14 @@ public var enemyPrefabs : GameObject[];
 public var player : GameObject;
 
 function Start () {
-  Instantiate(player, Vector3.zero, Quaternion.identity);
-
+  spawnPlayer();
   for (var i = 0; i < 8; i++) {
     spawnRandomEnemy();
   }
 }
 
 function spawnRandomEnemy() {
-  var enemyPrefab = enemyPrefabs[Random.Range(0, enemyPrefabs.length)];
+  var enemyPrefab = enemyPrefabs[Random.Range(0, enemyPrefabs.Length)];
 
   var position = new Vector3(
     Random.Range(-2.0F, 2.0F),
@@ -22,12 +21,19 @@ function spawnRandomEnemy() {
   Instantiate(enemyPrefab, position, Quaternion.identity);
 }
 
+function spawnPlayer() {
+  Instantiate(player, Vector3.zero, Quaternion.identity);
+}
+
 function Update () {
 
 }
 
 function characterDied(character: Character) {
-  if (typeof Character == Goblin) {
+  if (character instanceof Player) {
+    spawnPlayer();
+  } else {
+    // TODO ensure this is an enemy prefab
     spawnRandomEnemy();
   }
 }
