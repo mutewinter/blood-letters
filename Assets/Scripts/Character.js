@@ -34,14 +34,17 @@ class Character extends MonoBehaviour {
     var bullet = other.GetComponent.<Bullet>();
 
     if (bullet) {
+      // Can't hit the firee.
+      if (this == bullet.character) { return; }
+
       bullet.SendMessage('hit', this);
 
       if (health <= 0) {
         // Died!
         this.die();
       } else {
-        animateHit();
         // Damaged
+        animateHit();
       }
     }
   }

@@ -19,9 +19,6 @@ class Bullet extends MonoBehaviour {
   }
 
   function hit(other: Character) {
-    // Can't hit the firee.
-    if (other == character) { return; }
-
     other.health -= damage;
 
     yield showPopupDamage(damage, other.transform.position);
