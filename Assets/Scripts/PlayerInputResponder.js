@@ -1,7 +1,6 @@
 ﻿#pragma strict
 
 private var nextFire : float = 0;
-private var bulletSpeed : float = 100;
 
 function Start () {
 }
@@ -13,20 +12,15 @@ function Update () {
     nextFire = Time.time + player.fireRate;
 
     var playerPosition = Camera.main.WorldToScreenPoint(transform.position);
-    var direction = (Input.mousePosition - playerPosition).normalized;
-    direction.z = 0;
+    var fireDirection = (Input.mousePosition - playerPosition).normalized;
+    fireDirection.z = 0;
 
     var bulletPrefab = Instantiate(
       player.bulletPrefab, transform.position, Quaternion.identity
     );
-
     var bullet = bulletPrefab.GetComponent.<Bullet>();
-    bullet.player = player;
-    bullet.damage = player.damage;
-
-    bulletPrefab.GetComponent.<Rigidbody2D>().AddForce(
-      direction * bulletSpeed
-    );
+    bullet.character = player;
+    bullet.fire(fireDirection, player.damage);
   }
 
   if (Input.GetButton('Horizontal') || Input.GetButton('Vertical')) {

@@ -57,6 +57,7 @@ MonoBehaviour:
   moveSpeed: 1
   health: 1
   worthExperience: 10
+  bulletPrefab: {fileID: 139770, guid: 61a96306711a64ee79006041f33f86a8, type: 2}
   _damage: 1
   _kills: 0
 --- !u!212 &21206472
@@ -96,6 +97,10 @@ Prefab:
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: bulletPrefab
+      value: 
+      objectReference: {fileID: 139770, guid: 61a96306711a64ee79006041f33f86a8, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 114238}

@@ -115,9 +115,9 @@ MonoBehaviour:
   moveSpeed: 2
   health: 1
   worthExperience: 10
+  bulletPrefab: {fileID: 139770, guid: 61a96306711a64ee79006041f33f86a8, type: 2}
   _damage: 1
   _kills: 0
-  bulletPrefab: {fileID: 139770, guid: 61a96306711a64ee79006041f33f86a8, type: 2}
   fireRate: .300000012
   _baseDamage: 0
   _weaponDamage: 0
@@ -180,7 +180,11 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: bulletPrefab
+      value: 
+      objectReference: {fileID: 139770, guid: 61a96306711a64ee79006041f33f86a8, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 161910}

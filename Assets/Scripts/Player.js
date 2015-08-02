@@ -1,8 +1,6 @@
 ﻿#pragma strict
 
 class Player extends Character {
-  public var bulletPrefab: GameObject;
-
   var fireRate: float = 0.2;
 
   var _baseDamage = 0;

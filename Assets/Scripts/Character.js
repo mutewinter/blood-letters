@@ -4,6 +4,7 @@ class Character extends MonoBehaviour {
   public var moveSpeed = 1.0;
   public var health = 1;
   public var worthExperience = 10;
+  public var bulletPrefab: GameObject;
 
   public var _damage = 1;
   function get damage() : float {
