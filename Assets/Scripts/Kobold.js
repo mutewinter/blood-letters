@@ -18,7 +18,10 @@ class Kobold extends Character {
       );
       var bullet = bulletPrefab.GetComponent.<Bullet>();
       bullet.character = this;
-      bullet.fire(Vector2.right, damage);
-    }
+      var fireDirection = new Vector2(
+        Random.Range(-1F, 1F),
+        Random.Range(-1F, 1F)
+      );
+      bullet.fire(fireDirection, damage); }
   }
 }
