@@ -23,7 +23,6 @@ class Bullet extends MonoBehaviour {
     if (other == character) { return; }
 
     other.health -= damage;
-    Debug.Log('Hit ' + other + ' for ' + damage + '. ' + 'HP: ' + other.health);
 
     yield showPopupDamage(damage, other.transform.position);
 
