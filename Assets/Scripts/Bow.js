@@ -10,8 +10,8 @@ function Start () {
   var tooltip = GetComponentInChildren(Tooltip);
 
   // TODO DRY with statusmanager
-  var weaponSign = damage > 0 ? '+' : '-';
-  tooltip.text = String.Format('{0} {1}', weaponSign, damage);
+  var weaponSign = damage > 0 ? '+' : '';
+  tooltip.text = String.Format('{0}{1}', weaponSign, damage);
 }
 
 function Update () {
