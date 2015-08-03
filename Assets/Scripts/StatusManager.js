@@ -48,7 +48,7 @@ class StatusManager extends MonoBehaviour {
     var weaponSign = weaponDamage > 0 ? '+' : '-';
     if (weaponDamage) {
       damageText = String.Format(
-        'Damage: {0} {1} {2}', baseDamage, weaponSign, weaponDamage
+        'Damage: {0} {1} {2}', baseDamage, weaponSign, Mathf.Abs(weaponDamage)
       );
     } else {
       damageText = String.Format('Damage: {0}', baseDamage);

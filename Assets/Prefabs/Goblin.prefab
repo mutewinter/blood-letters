@@ -96,7 +96,7 @@ MonoBehaviour:
   _damage: 1
   _kills: 0
   possibleLoot:
-  - {fileID: 177560, guid: e171efc3221674de6936ccd5bd3fd338, type: 2}
+  - {fileID: 162262, guid: e171efc3221674de6936ccd5bd3fd338, type: 2}
   moveRate: .800000012
 --- !u!212 &21262064
 SpriteRenderer:
@@ -142,7 +142,7 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: possibleLoot.Array.data[0]
       value: 
-      objectReference: {fileID: 177560, guid: e171efc3221674de6936ccd5bd3fd338, type: 2}
+      objectReference: {fileID: 162262, guid: e171efc3221674de6936ccd5bd3fd338, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 186610}
