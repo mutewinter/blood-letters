@@ -12,6 +12,7 @@ GameObject:
   - 114: {fileID: 11479100}
   - 61: {fileID: 6174298}
   - 95: {fileID: 9506270}
+  - 50: {fileID: 5067758}
   m_Layer: 0
   m_Name: Kobold
   m_TagString: Untagged
@@ -31,6 +32,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!50 &5067758
+Rigidbody2D:
+  serializedVersion: 2
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 114238}
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: .0500000007
+  m_GravityScale: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!61 &6174298
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -72,10 +89,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7e01e57d98144d4f91023ddba0f9641, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 1
+  moveSpeed: 0
   health: 1
   worthExperience: 10
   bulletPrefab: {fileID: 139770, guid: 61a96306711a64ee79006041f33f86a8, type: 2}
+  moveRate: Infinity
   _damage: 1
   _kills: 0
 --- !u!212 &21206472
@@ -123,6 +141,10 @@ Prefab:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 39a81fb8afcc648d5972152673054ca2, type: 2}
+    - target: {fileID: 0}
+      propertyPath: m_GravityScale
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 114238}

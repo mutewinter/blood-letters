@@ -3,18 +3,13 @@
 class Goblin extends Character {
   public var possibleLoot: GameObject[];
 
-  public var moveRate : float = 0.8;
 
   function Start () {
     worthExperience = 45;
     health = 5;
     moveSpeed = 10;
-
-    // Movable
-    var aiMovable = gameObject.AddComponent(AIMovable);
-    aiMovable.moveRate = moveRate;
-    aiMovable.moveSpeed = 10;
-    aiMovable.target = this;
+    moveRate = 0.8;
+    super.Start();
   }
 
   function Update () {

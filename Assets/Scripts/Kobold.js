@@ -8,6 +8,9 @@ class Kobold extends Character {
   function Start () {
     worthExperience = 55;
     health = 15;
+    moveSpeed = 5;
+    moveRate = 0.8;
+    super.Start();
   }
 
   function Update () {

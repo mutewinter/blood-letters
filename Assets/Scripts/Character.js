@@ -1,10 +1,11 @@
 #pragma strict
 
 class Character extends MonoBehaviour {
-  public var moveSpeed = 1.0;
+  public var moveSpeed = 0;
   public var health = 1;
   public var worthExperience = 10;
   public var bulletPrefab: GameObject;
+  public var moveRate : float = Mathf.Infinity;
 
   public var _damage = 1;
   function get damage() : float {
@@ -19,7 +20,11 @@ class Character extends MonoBehaviour {
   function set kills(value: int) { _kills = value; }
 
   function Start () {
-
+    // Movable
+    var aiMovable = gameObject.AddComponent(AIMovable);
+    aiMovable.moveRate = moveRate;
+    aiMovable.moveSpeed = moveSpeed;
+    aiMovable.target = this;
   }
 
   function Update () {
