@@ -42,6 +42,12 @@ class Character extends MonoBehaviour {
       // Can't hit the firee.
       if (this == bullet.character) { return; }
 
+      // Enemy bullets can't hit enemies
+      if (transform.tag == 'enemy' &&
+        bullet.character.transform.tag == 'enemy') {
+        return;
+      }
+
       bullet.SendMessage('hit', this);
 
       if (health <= 0) {
