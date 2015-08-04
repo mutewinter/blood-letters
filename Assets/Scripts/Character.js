@@ -39,24 +39,7 @@ class Character extends MonoBehaviour {
     var bullet = other.GetComponent.<Bullet>();
 
     if (bullet) {
-      // Can't hit the firee.
-      if (this == bullet.character) { return; }
-
-      // Enemy bullets can't hit enemies
-      if (transform.tag == 'enemy' &&
-        bullet.character.transform.tag == 'enemy') {
-        return;
-      }
-
-      bullet.SendMessage('hit', this);
-
-      if (health <= 0) {
-        // Died!
-        this.die();
-      } else {
-        // Damaged
-        animateHit();
-      }
+      bullet.processHit(this);
     }
   }
 

@@ -20,7 +20,7 @@ class Kobold extends Character {
         bulletPrefab, transform.position, Quaternion.identity
       );
       var bullet = bulletPrefab.GetComponent.<Bullet>();
-      bullet.character = this;
+      bullet.shooter = this;
       var fireDirection = new Vector2(
         Random.Range(-1F, 1F),
         Random.Range(-1F, 1F)

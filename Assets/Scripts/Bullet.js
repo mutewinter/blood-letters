@@ -3,7 +3,7 @@
 import System.Collections.Generic;
 
 class Bullet extends MonoBehaviour {
-  public var character: Character;
+  public var shooter: Character;
   public var damage = 0;
   public var secondsToLive = 0.8;
   public var bulletSpeed : float = 100;
@@ -24,8 +24,8 @@ class Bullet extends MonoBehaviour {
     yield showPopupDamage(damage, other.transform.position);
 
     if (other.health <= 0) {
-      character.gainExperience(other.worthExperience);
-      character.kills++;
+      shooter.gainExperience(other.worthExperience);
+      shooter.kills++;
     }
     Destroy(gameObject);
   }
@@ -45,5 +45,26 @@ class Bullet extends MonoBehaviour {
   function fire(direction: Vector2, bulletDamage: int) {
     damage = bulletDamage;
     GetComponent.<Rigidbody2D>().AddForce(direction * bulletSpeed);
+  }
+
+  function processHit(victim: Character) {
+    // Can't hit the firee.
+    if (victim == shooter) { return; }
+
+    // Enemy bullets can't hit enemies
+    if (victim.transform.tag == 'enemy' &&
+      shooter.transform.tag == 'enemy') {
+      return;
+    }
+
+    SendMessage('hit', victim);
+
+    if (victim.health <= 0) {
+      // Died!
+      victim.die();
+    } else {
+      // Damaged
+      victim.animateHit();
+    }
   }
 }

@@ -19,7 +19,7 @@ function Update () {
       player.bulletPrefab, transform.position, Quaternion.identity
     );
     var bullet = bulletPrefab.GetComponent.<Bullet>();
-    bullet.character = player;
+    bullet.shooter = player;
     bullet.fire(fireDirection, player.damage);
   }
 
