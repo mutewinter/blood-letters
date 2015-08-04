@@ -131,10 +131,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 2
-  health: 10
   worthExperience: 10
   bulletPrefab: {fileID: 139770, guid: 61a96306711a64ee79006041f33f86a8, type: 2}
   moveRate: Infinity
+  _health: 3
   _damage: 1
   _kills: 0
   fireRate: .300000012
@@ -212,6 +212,10 @@ Prefab:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 39a81fb8afcc648d5972152673054ca2, type: 2}
+    - target: {fileID: 0}
+      propertyPath: _health
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 161910}

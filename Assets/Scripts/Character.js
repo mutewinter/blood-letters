@@ -2,17 +2,24 @@
 
 class Character extends MonoBehaviour {
   public var moveSpeed = 0;
-  public var health = 1;
   public var worthExperience = 10;
   public var bulletPrefab: GameObject;
   public var moveRate : float = Mathf.Infinity;
+
+  public var _health = 1;
+  function get health() : float {
+    return _health;
+  }
+  function set health(value : float) {
+    _health = value;
+  }
 
   public var _damage = 1;
   function get damage() : float {
     return _damage;
   }
   function set damage(value : float) {
-    damage = value;
+    _damage = value;
   }
 
   public var _kills = 0;

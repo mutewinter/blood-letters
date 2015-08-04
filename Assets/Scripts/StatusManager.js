@@ -3,6 +3,10 @@
 class StatusManager extends MonoBehaviour {
   public var text: UnityEngine.UI.Text;
 
+  var _health = 0;
+  function get health() { return _health; }
+  function set health(value: int) { _health = value; update(); }
+
   var _level = 0;
   function get level() { return _level; }
   function set level(value: int) { _level = value; update(); }
@@ -39,6 +43,8 @@ class StatusManager extends MonoBehaviour {
   }
 
   function update() {
+    var healthText = String.Format('Health: {0}', health);
+
     var levelText = String.Format(
       'Level: {0} ({1}/{2} XP)', level, experience,
       experienceNeededForNextLevel
@@ -54,8 +60,13 @@ class StatusManager extends MonoBehaviour {
       damageText = String.Format('Damage: {0}', baseDamage);
     }
 
-    text.text = String.Format(
-      '{0}\n{1}\nKills: {2}', levelText, damageText, kills
-    );
+    var killsText = String.Format('Kills: {0}', kills);
+
+    text.text = new Array([
+      healthText,
+      levelText,
+      damageText,
+      killsText
+    ]).join('\n');
   }
 }

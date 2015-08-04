@@ -35,6 +35,10 @@ class Player extends Character {
     level = value;
   }
 
+  function set health(value : float) {
+    _health = value; updateStatusManager();
+  }
+
   function get damage() : float {
     // Don't allow less than one damage
     return baseDamage + weaponDamage || 1;
@@ -71,8 +75,9 @@ class Player extends Character {
       statusManager.baseDamage = baseDamage;
       statusManager.kills = kills;
       statusManager.experience = totalExperience;
-      statusManager.experienceNeededForNextLevel = 100;
+      statusManager.experienceNeededForNextLevel = level * 100;
       statusManager.weaponDamage = weaponDamage;
+      statusManager.health = health;
     } else {
       Debug.Log('No status manager');
     }

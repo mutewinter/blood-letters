@@ -193,8 +193,8 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 87.5999985, y: 31.1000004}
-  m_SizeDelta: {x: 160, y: 50.9000015}
+  m_AnchoredPosition: {x: 87.5999985, y: 39.2999992}
+  m_SizeDelta: {x: 160, y: 67.3000031}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &912107721
 MonoBehaviour:
@@ -221,7 +221,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Level: 1
+  m_Text: 'Health: 3
+
+    Level: 1
 
     Damage: 1
 
@@ -244,6 +246,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 912107721}
+  _health: 0
   _level: 0
   _baseDamage: 0
   _weaponDamage: 0
