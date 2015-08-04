@@ -19,14 +19,11 @@ class Bullet extends MonoBehaviour {
   }
 
   function hit(other: Character) {
-    other.health -= damage;
+    other.takeDamage(shooter);
 
+    // TODO Move into Character
     yield showPopupDamage(damage, other.transform.position);
 
-    if (other.health <= 0) {
-      shooter.gainExperience(other.worthExperience);
-      shooter.kills++;
-    }
     Destroy(gameObject);
   }
 
@@ -57,14 +54,6 @@ class Bullet extends MonoBehaviour {
       return;
     }
 
-    SendMessage('hit', victim);
-
-    if (victim.health <= 0) {
-      // Died!
-      victim.die();
-    } else {
-      // Damaged
-      victim.animateHit();
-    }
+    hit(victim);
   }
 }

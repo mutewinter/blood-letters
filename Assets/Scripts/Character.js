@@ -37,9 +37,13 @@ class Character extends MonoBehaviour {
     if (health <= 0) { return; }
 
     var bullet = other.GetComponent.<Bullet>();
-
     if (bullet) {
       bullet.processHit(this);
+    }
+
+    var otherCharacter = other.GetComponent.<Character>();
+    if (otherCharacter) {
+      processMeleeHit(otherCharacter);
     }
   }
 
@@ -77,5 +81,32 @@ class Character extends MonoBehaviour {
 
   // For subclasses to override.
   function onDied() { }
+
+  function processMeleeHit(otherCharacter: Character) {
+    // Enemies don't fight each other
+    if (otherCharacter.transform.tag == 'enemy' &&
+        transform.transform.tag == 'enemy') {
+      return;
+    }
+
+    takeDamage(otherCharacter);
+  }
+
+  function takeDamage(otherCharacter: Character) {
+    health -= otherCharacter.damage;
+
+    if (health <= 0) {
+      otherCharacter.gainExperience(worthExperience);
+      otherCharacter.kills++;
+    }
+
+    if (health <= 0) {
+      // Died!
+      die();
+    } else {
+      // Damaged
+      animateHit();
+    }
+  }
 }
 
