@@ -3,24 +3,21 @@
 class Goblin extends Character {
   public var possibleLoot: GameObject[];
 
-  private var nextMove : float = 0;
   public var moveRate : float = 0.8;
 
   function Start () {
     worthExperience = 45;
     health = 5;
     moveSpeed = 10;
+
+    // Movable
+    var aiMovable = gameObject.AddComponent(AIMovable);
+    aiMovable.moveRate = moveRate;
+    aiMovable.moveSpeed = 10;
+    aiMovable.target = this;
   }
 
   function Update () {
-    if (Time.time > nextMove) {
-      nextMove = Time.time + moveRate;
-      var moveDirection = new Vector2(
-        Random.Range(-1F, 1F),
-        Random.Range(-1F, 1F)
-      );
-      GetComponent.<Rigidbody2D>().AddForce(moveDirection * moveSpeed);
-    }
   }
 
   function onDied() {
