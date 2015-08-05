@@ -20,4 +20,10 @@ class AIMovable extends MonoBehaviour {
       rigidbody2D.AddForce(moveDirection * moveSpeed);
     }
   }
+
+  function OnDisable() {
+    var rigidbody2D = target.GetComponent.<Rigidbody2D>();
+    rigidbody2D.velocity = Vector2.zero;
+    rigidbody2D.angularVelocity = 0;
+  }
 }
