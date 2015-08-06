@@ -8,10 +8,12 @@ class Elephant extends Character {
   // Private variables
   private var nextPlayerCheck : float = 0;
   private var playerCheckFrequency : float = 0.5;
+  private var startingHealth : int;
 
   function Start () {
     worthExperience = 200;
     health = 30;
+    startingHealth = health;
     moveSpeed = 10;
     moveRate = 0.8;
 
@@ -41,7 +43,8 @@ class Elephant extends Character {
       Vector2.Distance(transform.position, player.transform.position);
     if (distanceFromPlayer <= angryDistance) {
       enableAIMovement();
-    } else {
+    } else if (health >= startingHealth) {
+      // Can only become docile again if less than full health.
       disableAIMovement();
     }
   }
@@ -54,5 +57,10 @@ class Elephant extends Character {
   function enableAIMovement() {
     var aiMovable = GetComponent.<AIMovable>();
     aiMovable.enabled = true;
+  }
+
+  function takeDamage(otherCharacter: Character) {
+    enableAIMovement();
+    super.takeDamage(otherCharacter);
   }
 }
