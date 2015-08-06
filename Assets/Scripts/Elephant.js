@@ -1,11 +1,22 @@
 #pragma strict
 
 class Elephant extends Character {
+  public var angryDistance = 1.0;
+
+  private var player: GameObject;
+
+  // Private variables
+  private var nextPlayerCheck : float = 0;
+  private var playerCheckFrequency : float = 0.5;
+
   function Start () {
     worthExperience = 200;
     health = 30;
-    moveSpeed = 50;
+    moveSpeed = 10;
     moveRate = 0.8;
+
+    // Track player so we can determine distance
+    player = GameObject.FindGameObjectWithTag('Player');
 
     super.Start();
 
@@ -13,7 +24,26 @@ class Elephant extends Character {
     disableAIMovement();
   }
 
-  function Update () {
+  function Update() {
+    if (Time.time > nextPlayerCheck) {
+      nextPlayerCheck = Time.time + playerCheckFrequency;
+      watchPlayer();
+    }
+  }
+
+  function watchPlayer() {
+    if (!player) {
+      // Track player so we can determine distance
+      player = GameObject.FindGameObjectWithTag('Player');
+    }
+
+    var distanceFromPlayer =
+      Vector2.Distance(transform.position, player.transform.position);
+    if (distanceFromPlayer <= angryDistance) {
+      enableAIMovement();
+    } else {
+      disableAIMovement();
+    }
   }
 
   function disableAIMovement() {
@@ -24,15 +54,5 @@ class Elephant extends Character {
   function enableAIMovement() {
     var aiMovable = GetComponent.<AIMovable>();
     aiMovable.enabled = true;
-  }
-
-  function OnTriggerEnter2D(other: Collider2D) {
-    var player = other.GetComponentInParent.<Player>();
-    if (player) { enableAIMovement(); }
-  }
-
-  function OnTriggerExit2D(other: Collider2D) {
-    var player = other.GetComponentInParent.<Player>();
-    if (player) { disableAIMovement(); }
   }
 }
