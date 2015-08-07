@@ -2,6 +2,7 @@
 
 public var enemyPrefabs : GameObject[];
 public var player : GameObject;
+public var wall : GameObject;
 
 // Custom Mouse Cursor
 public var cursorTexture: Texture2D;
@@ -9,7 +10,10 @@ public var hotSpot: Vector2 = Vector2.zero;
 private var mouse = Vector2.zero;
 
 function Start () {
+  spawnWalls();
+
   spawnPlayer();
+
   for (var i = 0; i < 8; i++) {
     spawnRandomEnemy();
   }
@@ -55,4 +59,19 @@ function characterDied(character: Character) {
     // TODO ensure this is an enemy prefab
     spawnRandomEnemy();
   }
+}
+
+function spawnWalls() {
+  // Right
+  Instantiate(wall, Vector2(2.5, 0), Quaternion.identity);
+  // Left
+  Instantiate(wall, Vector2(-2.5, 0), Quaternion.identity);
+
+  var horizontalRotation = Quaternion.identity;
+  horizontalRotation.eulerAngles = Vector3(0, 0, 90);
+
+  // Bottom
+  Instantiate(wall, Vector2(0, 2.5), horizontalRotation);
+  // Top
+  Instantiate(wall, Vector2(0, -2.5), horizontalRotation);
 }
