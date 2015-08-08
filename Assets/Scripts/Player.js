@@ -41,7 +41,8 @@ class Player extends Character {
 
   function get damage() : float {
     // Don't allow less than one damage
-    return baseDamage + weaponDamage || 1;
+    var totalDamage = baseDamage + weaponDamage;
+    return totalDamage > 0 ? totalDamage : 1;
   }
 
   function Start () {
