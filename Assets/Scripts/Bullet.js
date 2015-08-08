@@ -19,10 +19,12 @@ class Bullet extends MonoBehaviour {
   }
 
   function hit(other: Character) {
-    other.takeDamage(shooter);
+    if (shooter.damage > 0) {
+      other.takeDamage(shooter);
 
-    // TODO Move into Character
-    yield showPopupDamage(damage, other.transform.position);
+      // TODO Move into Character
+      yield showPopupDamage(damage, other.transform.position);
+    }
 
     Destroy(gameObject);
   }
