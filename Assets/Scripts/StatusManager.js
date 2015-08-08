@@ -11,6 +11,10 @@ class StatusManager extends MonoBehaviour {
   function get level() { return _level; }
   function set level(value: int) { _level = value; update(); }
 
+  var _damage = 0;
+  function get damage() { return _damage; }
+  function set damage(value: int) { _damage = value; update(); }
+
   var _baseDamage = 0;
   function get baseDamage() { return _baseDamage; }
   function set baseDamage(value: int) { _baseDamage = value; update(); }
@@ -51,10 +55,11 @@ class StatusManager extends MonoBehaviour {
     );
 
     var damageText = '';
-    var weaponSign = weaponDamage > 0 ? '+' : '-';
     if (weaponDamage) {
+      var weaponSign = weaponDamage > 0 ? '+' : '';
       damageText = String.Format(
-        'Damage: {0} {1} {2}', baseDamage, weaponSign, Mathf.Abs(weaponDamage)
+        'Damage: {0} ({1}{2}{3})',
+        damage, baseDamage, weaponSign, weaponDamage
       );
     } else {
       damageText = String.Format('Damage: {0}', baseDamage);

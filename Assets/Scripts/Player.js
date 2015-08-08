@@ -73,11 +73,14 @@ class Player extends Character {
     var statusManager = canvas.GetComponentInChildren(StatusManager);
     if (statusManager) {
       statusManager.level = level;
+
+      statusManager.damage = damage;
       statusManager.baseDamage = baseDamage;
+      statusManager.weaponDamage = weaponDamage;
+
       statusManager.kills = kills;
       statusManager.experience = totalExperience;
       statusManager.experienceNeededForNextLevel = level * 100;
-      statusManager.weaponDamage = weaponDamage;
       statusManager.health = health;
     } else {
       Debug.Log('No status manager');
