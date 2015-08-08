@@ -45,6 +45,11 @@ class Bullet extends MonoBehaviour {
   }
 
   function processHit(victim: Character) {
+    // Victim or shooter were destroyed, don't evalute further
+    // Shooter can become destroyed after the shot has left their gun.
+    // TODO allow shooter to die, but still have its bullets affect targets.
+    if (victim == null || shooter == null) { return; }
+
     // Can't hit the firee.
     if (victim == shooter) { return; }
 
