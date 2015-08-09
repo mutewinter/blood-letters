@@ -38,7 +38,7 @@ function OnGUI() {
 }
 
 function spawnRandomEnemy() {
-  var enemyPrefab = enemyPrefabs[Random.Range(0, enemyPrefabs.Length)];
+  var enemyPrefab = enemyPrefabs[0];
 
   var position = new Vector3(
     Random.Range(-2.0F, 2.0F),

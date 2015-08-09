@@ -35,27 +35,32 @@ AnimationClip:
       m_Curve:
       - time: 0
         value: {x: .100000001, y: .100000001, z: .100000001}
-        inSlope: {x: 2.79999995, y: 2.79999995, z: 2.79999995}
-        outSlope: {x: 2.79999995, y: 2.79999995, z: 2.79999995}
+        inSlope: {x: .200000003, y: .200000003, z: 1.79999995}
+        outSlope: {x: .200000003, y: .200000003, z: 1.79999995}
         tangentMode: 0
       - time: .5
-        value: {x: 1.5, y: 1.5, z: 1.5}
-        inSlope: {x: .899999976, y: .899999976, z: .899999976}
-        outSlope: {x: .899999976, y: .899999976, z: .899999976}
+        value: {x: .200000003, y: .200000003, z: 1}
+        inSlope: {x: .0500000045, y: .0500000045, z: .899999976}
+        outSlope: {x: .0500000045, y: .0500000045, z: .899999976}
         tangentMode: 0
       - time: 1
-        value: {x: 1, y: 1, z: 1}
-        inSlope: {x: -1, y: -1, z: -1}
-        outSlope: {x: -1, y: -1, z: -1}
+        value: {x: .150000006, y: .150000006, z: 1}
+        inSlope: {x: -.099999994, y: -.099999994, z: 0}
+        outSlope: {x: -.099999994, y: -.099999994, z: 0}
         tangentMode: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
-    path: BowSprite
+    path: Symbol
   m_FloatCurves:
   - curve:
       serializedVersion: 2
       m_Curve:
       - time: 0
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      - time: .649999976
         value: 0
         inSlope: Infinity
         outSlope: Infinity
@@ -85,7 +90,7 @@ AnimationClip:
       classID: 4
       customType: 0
       isPPtrCurve: 0
-    - path: 3038398614
+    - path: 3949212623
       attribute: 3
       script: {fileID: 0}
       classID: 4
@@ -121,23 +126,23 @@ AnimationClip:
       m_Curve:
       - time: 0
         value: .100000001
-        inSlope: 2.79999995
-        outSlope: 2.79999995
+        inSlope: .200000003
+        outSlope: .200000003
         tangentMode: 10
       - time: .5
-        value: 1.5
-        inSlope: .899999976
-        outSlope: .899999976
+        value: .200000003
+        inSlope: .0500000045
+        outSlope: .0500000045
         tangentMode: 10
       - time: 1
-        value: 1
-        inSlope: -1
-        outSlope: -1
+        value: .150000006
+        inSlope: -.099999994
+        outSlope: -.099999994
         tangentMode: 10
       m_PreInfinity: 2
       m_PostInfinity: 2
     attribute: m_LocalScale.x
-    path: BowSprite
+    path: Symbol
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -145,23 +150,23 @@ AnimationClip:
       m_Curve:
       - time: 0
         value: .100000001
-        inSlope: 2.79999995
-        outSlope: 2.79999995
+        inSlope: .200000003
+        outSlope: .200000003
         tangentMode: 10
       - time: .5
-        value: 1.5
-        inSlope: .899999976
-        outSlope: .899999976
+        value: .200000003
+        inSlope: .0500000045
+        outSlope: .0500000045
         tangentMode: 10
       - time: 1
-        value: 1
-        inSlope: -1
-        outSlope: -1
+        value: .150000006
+        inSlope: -.099999994
+        outSlope: -.099999994
         tangentMode: 10
       m_PreInfinity: 2
       m_PostInfinity: 2
     attribute: m_LocalScale.y
-    path: BowSprite
+    path: Symbol
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -169,29 +174,34 @@ AnimationClip:
       m_Curve:
       - time: 0
         value: .100000001
-        inSlope: 2.79999995
-        outSlope: 2.79999995
+        inSlope: 1.79999995
+        outSlope: 1.79999995
         tangentMode: 10
       - time: .5
-        value: 1.5
+        value: 1
         inSlope: .899999976
         outSlope: .899999976
         tangentMode: 10
       - time: 1
         value: 1
-        inSlope: -1
-        outSlope: -1
+        inSlope: 0
+        outSlope: 0
         tangentMode: 10
       m_PreInfinity: 2
       m_PostInfinity: 2
     attribute: m_LocalScale.z
-    path: BowSprite
+    path: Symbol
     classID: 4
     script: {fileID: 0}
   - curve:
       serializedVersion: 2
       m_Curve:
       - time: 0
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      - time: .649999976
         value: 0
         inSlope: Infinity
         outSlope: Infinity

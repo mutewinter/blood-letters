@@ -1,8 +1,8 @@
 ﻿#pragma strict
 
 class Goblin extends Character {
-  public var possibleLoot: GameObject[];
-
+  public var skillPrefab: GameObject;
+  public var possibleSkills = ['D', 'Q'];
 
   function Start () {
     worthExperience = 45;
@@ -16,14 +16,18 @@ class Goblin extends Character {
   }
 
   function onDied() {
+    if (possibleSkills.length == 0) { return; }
+
     // Then loot
-    var randomLootIndex = Random.Range(0, possibleLoot.length);
+    var randomLootIndex = Random.Range(0, possibleSkills.length);
 
-    if (possibleLoot.length == 0) { return; }
+    var possibleSkill = possibleSkills[randomLootIndex];
 
-    var loot = possibleLoot[randomLootIndex];
     var lootPosition = transform.position;
     lootPosition.y += 0.3;
-    Instantiate(loot, lootPosition, Quaternion.identity);
+    var skillObject =
+      Instantiate(skillPrefab, lootPosition, Quaternion.identity);
+    var skill = skillObject.GetComponent.<Skill>();
+    skill.symbol = possibleSkill;
   }
 }

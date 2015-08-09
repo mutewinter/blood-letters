@@ -90,14 +90,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 0
-  health: 1
   worthExperience: 0
   bulletPrefab: {fileID: 0}
   moveRate: .800000012
+  _health: 1
   _damage: 1
   _kills: 0
-  possibleLoot:
-  - {fileID: 162262, guid: e171efc3221674de6936ccd5bd3fd338, type: 2}
+  skillPrefab: {fileID: 144854, guid: 517295550884b4b178e0d4087cf1e7c0, type: 2}
 --- !u!212 &21262064
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -142,11 +141,15 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: possibleLoot.Array.data[0]
       value: 
-      objectReference: {fileID: 162262, guid: e171efc3221674de6936ccd5bd3fd338, type: 2}
+      objectReference: {fileID: 144854, guid: 517295550884b4b178e0d4087cf1e7c0, type: 2}
     - target: {fileID: 0}
       propertyPath: m_TagString
       value: enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: skillPrefab
+      value: 
+      objectReference: {fileID: 144854, guid: 517295550884b4b178e0d4087cf1e7c0, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 186610}

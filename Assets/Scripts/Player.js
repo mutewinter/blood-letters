@@ -64,7 +64,7 @@ class Player extends Character {
     }
   }
 
-  function pickUp(item: Bow) {
+  function pickUp(item: Skill) {
     weaponDamage = item.damage;
   }
 
