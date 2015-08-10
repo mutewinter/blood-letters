@@ -16,15 +16,11 @@ class Kobold extends Character {
   function Update () {
     if (Time.time > nextFire) {
       nextFire = Time.time + fireRate;
-      var bulletPrefab = Instantiate(
-        bulletPrefab, transform.position, Quaternion.identity
-      );
-      var bullet = bulletPrefab.GetComponent.<Bullet>();
-      bullet.shooter = this;
-      var fireDirection = new Vector2(
+      var attackDirection = new Vector2(
         Random.Range(-1F, 1F),
         Random.Range(-1F, 1F)
       );
-      bullet.fire(fireDirection, damage); }
+      attack(attackDirection);
+    }
   }
 }

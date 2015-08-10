@@ -115,5 +115,15 @@ class Character extends MonoBehaviour {
       animateHit();
     }
   }
+
+  function attack(direction: Vector2) : Bullet {
+    var bulletObject = Instantiate(
+      bulletPrefab, transform.position, Quaternion.identity
+    );
+    var bullet = bulletObject.GetComponent.<Bullet>();
+    bullet.shooter = this;
+    bullet.fire(direction, damage);
+    return bullet;
+  }
 }
 

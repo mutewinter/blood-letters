@@ -12,15 +12,10 @@ function Update () {
     nextFire = Time.time + player.fireRate;
 
     var playerPosition = Camera.main.WorldToScreenPoint(transform.position);
-    var fireDirection = (Input.mousePosition - playerPosition).normalized;
-    fireDirection.z = 0;
+    var attackDirection = (Input.mousePosition - playerPosition).normalized;
+    attackDirection.z = 0;
 
-    var bulletPrefab = Instantiate(
-      player.bulletPrefab, transform.position, Quaternion.identity
-    );
-    var bullet = bulletPrefab.GetComponent.<Bullet>();
-    bullet.shooter = player;
-    bullet.fire(fireDirection, player.damage);
+    player.attack(attackDirection);
   }
 
   if (Input.GetButton('Horizontal') || Input.GetButton('Vertical')) {
