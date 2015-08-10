@@ -6,11 +6,9 @@ class Player extends Character {
   var _baseDamage = 0;
   function get baseDamage() { return (level * 1.5); }
 
-  var _weaponDamage = 0;
-  function get weaponDamage() { return _weaponDamage; }
-  function set weaponDamage(value: int) {
-    _weaponDamage = value;
-    updateStatusManager();
+  function get weaponDamage() {
+    var skill = GetComponent(Skill);
+    return skill ? skill.damage : 0;
   }
 
   var _totalExperience = 1;
@@ -64,8 +62,16 @@ class Player extends Character {
     }
   }
 
-  function pickUp(item: Skill) {
-    weaponDamage = item.damage;
+  function pickUp(newSkill: Skill) {
+    var skill = GetComponent(Skill);
+    if (!skill) {
+      skill = gameObject.AddComponent(newSkill.GetType()) as Skill;
+    }
+    // TODO find a way to clone without all of this boilerplate.
+    skill.color = newSkill.color;
+    skill.damage = newSkill.damage;
+    skill.symbol = newSkill.symbol;
+    updateStatusManager();
   }
 
   function updateStatusManager() {

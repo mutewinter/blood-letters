@@ -5,6 +5,7 @@ class Fire extends Skill {
     damageMin = 3;
     damageMax = 10;
     symbol = 'F';
+    color = Color.red;
     super.Start();
   }
 }

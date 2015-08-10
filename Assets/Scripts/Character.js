@@ -123,6 +123,12 @@ class Character extends MonoBehaviour {
     var bullet = bulletObject.GetComponent.<Bullet>();
     bullet.shooter = this;
     bullet.fire(direction, damage);
+
+    var skill = GetComponent(Skill);
+    if (skill) {
+      bullet.GetComponent.<Renderer>().material.color = skill.color;
+    }
+
     return bullet;
   }
 }
