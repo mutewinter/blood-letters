@@ -23,7 +23,10 @@ class Character extends MonoBehaviour {
   function get level() : int { return _level; }
   function set level(value : int) { level = value; }
 
-  function get damage() { return Mathf.Log(level, 2); }
+  function get damage() {
+    var computedDamage = Mathf.Log(level, 2);
+    return computedDamage >= 1 ? computedDamage : 1;
+  }
 
   function get skillDamage() {
     var skill = GetComponent(Skill);
