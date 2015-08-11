@@ -48,9 +48,6 @@ class Player extends Character {
     updateStatusManager();
   }
 
-  function Update () {
-  }
-
   function gainExperience(experience: int) {
     var startLevel = level;
     totalExperience += experience;
