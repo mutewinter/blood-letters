@@ -4,7 +4,8 @@ import System.Collections.Generic;
 
 
 class DropsSkills extends MonoBehaviour {
-  public var possibleSkillsDropped: List.<System.Type> = new List.<System.Type>();
+  public var possibleSkillsDropped: List.<System.Type> =
+    new List.<System.Type>();
   private var skillDropPrefab: GameObject;
 
   function Start() {
