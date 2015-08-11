@@ -248,9 +248,8 @@ MonoBehaviour:
   text: {fileID: 912107721}
   _health: 0
   _level: 0
-  _damage: 0
   _baseDamage: 0
-  _weaponDamage: 0
+  _skillDamage: 0
   _kills: 0
   _experience: 0
   _experienceNeededForNextLevel: 0

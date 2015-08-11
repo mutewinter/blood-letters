@@ -3,14 +3,6 @@
 class Player extends Character {
   var fireRate: float = 0.2;
 
-  var _baseDamage = 0;
-  function get baseDamage() { return (level * 1.5); }
-
-  function get weaponDamage() {
-    var skill = GetComponent(Skill);
-    return skill ? skill.damage : 0;
-  }
-
   var _totalExperience = 1;
   function get totalExperience() {
     return _totalExperience;
@@ -37,13 +29,11 @@ class Player extends Character {
     _health = value; updateStatusManager();
   }
 
-  function get damage() : float {
-    // Don't allow less than one damage
-    var totalDamage = baseDamage + weaponDamage;
-    return totalDamage > 0 ? totalDamage : 1;
-  }
+  function Start() {
+    // TODO Start player with sword
+    var skill = gameObject.AddComponent(Bow);
+    skill.damage = 0;
 
-  function Start () {
     moveSpeed = 2.0;
     updateStatusManager();
   }
@@ -77,9 +67,8 @@ class Player extends Character {
     if (statusManager) {
       statusManager.level = level;
 
-      statusManager.damage = damage;
-      statusManager.baseDamage = baseDamage;
-      statusManager.weaponDamage = weaponDamage;
+      statusManager.baseDamage = damage;
+      statusManager.skillDamage = skillDamage;
 
       statusManager.kills = kills;
       statusManager.experience = totalExperience;

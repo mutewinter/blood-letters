@@ -7,10 +7,28 @@ class Skill extends MonoBehaviour {
   public var symbol = 'L';
   public var color = Color.magenta;
 
-  function Start() {
+  public var projectilePrefab: GameObject;
+  public var projectilePrefabName: String;
+
+  function Awake() {
     damage = Random.Range(damageMin, damageMax);
+  }
+
+  function Start() {
     SendMessageUpwards(
       'skillAdded', this, SendMessageOptions.DontRequireReceiver
     );
+
+    if (projectilePrefabName) {
+      projectilePrefab = AssetDatabase.LoadAssetAtPath(
+        projectilePrefabName,
+        typeof(GameObject)
+      );
+      if (!projectilePrefab) {
+        Debug.LogWarning(String.Format(
+          'Skill: Missing Projectile Prefab {0}', projectilePrefabName
+        ));
+      }
+    }
   }
 }

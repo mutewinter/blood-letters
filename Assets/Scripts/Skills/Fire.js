@@ -1,11 +1,11 @@
 #pragma strict
 
 class Fire extends Skill {
-  function Start() {
+  function Awake() {
     damageMin = 3;
     damageMax = 10;
     symbol = 'F';
     color = Color.red;
-    super.Start();
+    super.Awake();
   }
 }

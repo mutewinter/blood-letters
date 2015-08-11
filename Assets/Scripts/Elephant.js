@@ -63,6 +63,6 @@ class Elephant extends Character {
 
   function takeDamage(otherCharacter: Character) {
     enableAIMovement();
-    super.takeDamage(otherCharacter);
+    super.takeDamage(otherCharacter.damage, otherCharacter);
   }
 }

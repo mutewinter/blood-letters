@@ -32,9 +32,9 @@ class SkillDrop extends MonoBehaviour {
   function updateTooltip() {
     var skill = GetComponent(Skill);
     if (skill) {
-      var weaponSign = skill.damage > 0 ? '+' : '';
+      var damageSign = skill.damage > 0 ? '+' : '';
       var tooltip = GetComponentInChildren(Tooltip);
-      tooltip.text = String.Format('{0}{1}', weaponSign, skill.damage);
+      tooltip.text = String.Format('{0}{1}', damageSign, skill.damage);
     }
   }
 

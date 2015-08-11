@@ -10,6 +10,8 @@ class Kobold extends Character {
     health = 15;
     moveSpeed = 5;
     moveRate = 0.8;
+    var skill = gameObject.AddComponent(Bow);
+    skill.damage = 1;
     super.Start();
     GetComponent.<DropsSkills>().possibleSkillsDropped.Add(Bow);
   }

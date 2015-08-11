@@ -1,5 +1,10 @@
 #pragma strict
 
+class SkillOptions extends System.ValueType {
+  public var direction: Vector2;
+  public var character: Character;
+}
+
 class Character extends MonoBehaviour {
   public var moveSpeed = 0;
   public var worthExperience = 10;
@@ -14,12 +19,15 @@ class Character extends MonoBehaviour {
     _health = value;
   }
 
-  public var _damage = 1;
-  function get damage() : float {
-    return _damage;
-  }
-  function set damage(value : float) {
-    _damage = value;
+  public var _level = 1;
+  function get level() : int { return _level; }
+  function set level(value : int) { level = value; }
+
+  function get damage() { return Mathf.Log(level, 2); }
+
+  function get skillDamage() {
+    var skill = GetComponent(Skill);
+    return skill ? skill.damage : 0;
   }
 
   public var _kills = 0;
@@ -97,11 +105,11 @@ class Character extends MonoBehaviour {
       return;
     }
 
-    takeDamage(otherCharacter);
+    takeDamage(damage + skillDamage, otherCharacter);
   }
 
-  function takeDamage(otherCharacter: Character) {
-    health -= otherCharacter.damage;
+  function takeDamage(damage: int, otherCharacter: Character) {
+    health -= damage;
 
     if (health <= 0) {
       otherCharacter.gainExperience(worthExperience);
@@ -117,20 +125,11 @@ class Character extends MonoBehaviour {
     }
   }
 
-  function attack(direction: Vector2) : Bullet {
-    var bulletObject = Instantiate(
-      bulletPrefab, transform.position, Quaternion.identity
-    );
-    var bullet = bulletObject.GetComponent.<Bullet>();
-    bullet.shooter = this;
-    bullet.fire(direction, damage);
-
-    var skill = GetComponent(Skill);
-    if (skill) {
-      bullet.GetComponent.<Renderer>().material.color = skill.color;
-    }
-
-    return bullet;
+  function attack(direction: Vector2) {
+    var skillOptions = new SkillOptions();
+    skillOptions.direction = direction;
+    skillOptions.character = this;
+    SendMessage('useSkill', skillOptions);
   }
 }
 
