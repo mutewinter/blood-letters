@@ -12,7 +12,7 @@ GameObject:
   - 95: {fileID: 9506838}
   - 61: {fileID: 6156452}
   m_Layer: 0
-  m_Name: Skill
+  m_Name: SkillDrop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -223,7 +223,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a11f48480440408baf3b39e4e6ce4bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _skill: {fileID: 0}
 --- !u!114 &11466008
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -26,16 +26,16 @@ class Character extends MonoBehaviour {
   function get kills() { return _kills; }
   function set kills(value: int) { _kills = value; }
 
-  function Start () {
+  function Start() {
     // Movable
     var aiMovable = gameObject.AddComponent(AIMovable);
     aiMovable.moveRate = moveRate;
     aiMovable.moveSpeed = moveSpeed;
     aiMovable.target = this;
-  }
 
-  function Update () {
-
+    // DropsSkills
+    var DropsSkills = gameObject.AddComponent(DropsSkills);
+    aiMovable.target = this;
   }
 
   function gainExperience(experience: int) {}
@@ -75,6 +75,7 @@ class Character extends MonoBehaviour {
   }
 
   function cleanUpAfterDeath() {
+    gameObject.SendMessage('onDied', this);
     onDied();
     var mainCamera = GameObject.FindWithTag('MainCamera');
     var gameManager = mainCamera.GetComponent.<GameManager>();
