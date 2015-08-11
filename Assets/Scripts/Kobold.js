@@ -5,12 +5,13 @@ class Kobold extends Character {
   private var bulletSpeed : float = 100;
   private var fireRate : float = 0.8;
 
-  function Start () {
+  function Start() {
     worthExperience = 55;
     health = 15;
     moveSpeed = 5;
     moveRate = 0.8;
     super.Start();
+    GetComponent.<DropsSkills>().possibleSkillsDropped.Add(Bow);
   }
 
   function Update () {

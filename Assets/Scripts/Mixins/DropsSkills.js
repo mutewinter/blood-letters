@@ -2,8 +2,9 @@
 
 import System.Collections.Generic;
 
+
 class DropsSkills extends MonoBehaviour {
-  public var possibleSkillsDropped = [Bow, Fire];
+  public var possibleSkillsDropped: List.<System.Type> = new List.<System.Type>();
   private var skillDropPrefab: GameObject;
 
   function Start() {
@@ -12,15 +13,15 @@ class DropsSkills extends MonoBehaviour {
       typeof(GameObject)
     );
     if (!skillDropPrefab) {
-      Debug.LogWarning('DropSkills: Missing SkillDrop prefab');
+      Debug.LogWarning('DropsSkills: Missing SkillDrop prefab');
     }
   }
 
   function onDied() {
-    if (possibleSkillsDropped.length == 0) { return; }
+    if (possibleSkillsDropped.Count == 0) { return; }
 
     // Then skill dropped
-    var randomLootIndex = Random.Range(0, possibleSkillsDropped.length);
+    var randomLootIndex = Random.Range(0, possibleSkillsDropped.Count);
     var skill = possibleSkillsDropped[randomLootIndex];
 
     var lootPosition = transform.position;
@@ -30,6 +31,8 @@ class DropsSkills extends MonoBehaviour {
     );
     var skillDrop = skillDropObject.GetComponent.<SkillDrop>();
 
-    skillDrop.gameObject.AddComponent(skill);
+    if (skill) {
+      skillDrop.gameObject.AddComponent(skill);
+    }
   }
 }
