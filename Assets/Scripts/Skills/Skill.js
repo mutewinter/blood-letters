@@ -9,6 +9,8 @@ class Skill extends MonoBehaviour {
 
   function Start() {
     damage = Random.Range(damageMin, damageMax);
-    SendMessageUpwards('skillAdded', this);
+    SendMessageUpwards(
+      'skillAdded', this, SendMessageOptions.DontRequireReceiver
+    );
   }
 }
