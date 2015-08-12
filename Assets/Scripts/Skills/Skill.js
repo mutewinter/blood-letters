@@ -1,14 +1,15 @@
 #pragma strict
 
+import System.Collections.Generic;
+
 class Skill extends MonoBehaviour {
   public var damage = 1;
   public var damageMin = 1;
   public var damageMax = 1;
   public var symbol = 'L';
-  public var color = Color.magenta;
-
-  public var projectilePrefab: GameObject;
-  public var projectilePrefabName: String;
+  // We use an array to keep track of all the abilities this skill has because
+  // GetComponent(Ability) returns all Abilities for all instantiated skills.
+  public var abilities = new List.<MonoBehaviour>();
 
   function Awake() {
     damage = Random.Range(damageMin, damageMax);
@@ -18,17 +19,11 @@ class Skill extends MonoBehaviour {
     SendMessageUpwards(
       'skillAdded', this, SendMessageOptions.DontRequireReceiver
     );
+  }
 
-    if (projectilePrefabName) {
-      projectilePrefab = AssetDatabase.LoadAssetAtPath(
-        projectilePrefabName,
-        typeof(GameObject)
-      );
-      if (!projectilePrefab) {
-        Debug.LogWarning(String.Format(
-          'Skill: Missing Projectile Prefab {0}', projectilePrefabName
-        ));
-      }
+  function OnDestroy() {
+    for (var ability in abilities) {
+      Destroy(ability);
     }
   }
 }

@@ -51,13 +51,14 @@ class Player extends Character {
 
   function pickUp(newSkill: Skill) {
     var skill = GetComponent(Skill);
-    if (!skill) {
-      skill = gameObject.AddComponent(newSkill.GetType()) as Skill;
+    // Destroy the old skill so it can be replaced.
+    if (skill) {
+      Destroy(skill);
     }
-    // TODO find a way to clone without all of this boilerplate.
-    skill.color = newSkill.color;
+    skill = gameObject.AddComponent(newSkill.GetType()) as Skill;
+    // TODO find a way to pass the component instance rather than cloning it.
+    // Ensure that the damage value shown on picked presists to skill.
     skill.damage = newSkill.damage;
-    skill.symbol = newSkill.symbol;
     updateStatusManager();
   }
 

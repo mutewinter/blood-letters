@@ -1,10 +1,10 @@
 #pragma strict
 
-class Bow extends Skill {
+class FireBow extends Skill {
   function Awake() {
-    damageMin = 1;
-    damageMax = 3;
-    symbol = 'D';
+    damageMin = 3;
+    damageMax = 10;
+    symbol = 'F';
     super.Awake();
   }
 
@@ -12,8 +12,7 @@ class Bow extends Skill {
     var singleProjectileAbility =
       gameObject.AddComponent(SingleProjectileAbility);
     singleProjectileAbility.damage = damage;
-    // Same as kobold
-    Color.TryParseHexString('FBE39F', singleProjectileAbility.color);
+    singleProjectileAbility.color = Color.red;
     abilities.Add(singleProjectileAbility);
     super.Start();
   }
