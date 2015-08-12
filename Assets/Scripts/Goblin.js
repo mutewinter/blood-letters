@@ -9,5 +9,6 @@ class Goblin extends Character {
     moveSpeed = 10;
     moveRate = 0.8;
     super.Start();
+    GetComponent.<DropsSkills>().possibleSkillsDropped.Add(FireWave);
   }
 }

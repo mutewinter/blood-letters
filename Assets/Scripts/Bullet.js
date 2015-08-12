@@ -9,15 +9,6 @@ class Bullet extends MonoBehaviour {
   public var bulletSpeed : float = 100;
   public var DamageText: GameObject;
 
-  function Start () {
-    yield WaitForSeconds(secondsToLive);
-    Destroy(gameObject);
-  }
-
-  function Update () {
-
-  }
-
   function hit(other: Character) {
     if (damage > 0) {
       other.takeDamage(damage, shooter);
@@ -44,6 +35,10 @@ class Bullet extends MonoBehaviour {
   function fire(direction: Vector2, bulletDamage: int) {
     damage = bulletDamage;
     GetComponent.<Rigidbody2D>().AddForce(direction * bulletSpeed);
+    yield WaitForSeconds(secondsToLive);
+    if (this) {
+      Destroy(gameObject);
+    }
   }
 
   function processHit(victim: Character) {
