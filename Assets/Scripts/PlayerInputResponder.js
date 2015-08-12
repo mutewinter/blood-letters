@@ -2,9 +2,6 @@
 
 private var nextFire : float = 0;
 
-function Start () {
-}
-
 function Update () {
   var player = GetComponent.<Player>();
 
