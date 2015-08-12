@@ -9,9 +9,6 @@ class SingleProjectileAbility extends Ability {
 
   function Awake() {
     projectilePrefabName = 'Assets/Prefabs/Bullet.prefab';
-  }
-
-  function Start() {
     if (projectilePrefabName) {
       projectilePrefab = AssetDatabase.LoadAssetAtPath(
         projectilePrefabName,
