@@ -22,7 +22,9 @@ class Shootable extends MonoBehaviour {
       );
     }
 
-    Destroy(projectile);
+    if (projectileOptions.shouldDestroyOnHit) {
+      Destroy(projectile);
+    }
   }
 
   function fire(newProjectileOptions: ProjectileOptions) {

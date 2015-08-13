@@ -4,6 +4,7 @@ class ProjectileOptions extends System.ValueType {
   public var character: Character;
   public var direction: Vector2;
   public var damage: int;
+  public var shouldDestroyOnHit: boolean;
 }
 
 class Projectile extends MonoBehaviour {

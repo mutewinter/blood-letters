@@ -6,6 +6,7 @@ class SingleProjectileAbility extends Ability {
   public var projectilePrefab: GameObject;
   public var projectilePrefabName = 'Assets/Prefabs/Bullet.prefab';
   public var color = Color.magenta;
+  public var shouldDestroyOnHit = false;
 
   function Start() {
     if (projectilePrefabName) {
@@ -36,6 +37,7 @@ class SingleProjectileAbility extends Ability {
     projectileOptions.damage = damage + character.damage;
     projectileOptions.direction = skillOptions.direction;
     projectileOptions.character = skillOptions.character;
+    projectileOptions.shouldDestroyOnHit = shouldDestroyOnHit;
     bullet.fire(projectileOptions);
 
     var skill = GetComponent(Skill);
