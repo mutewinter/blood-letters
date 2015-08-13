@@ -4,11 +4,10 @@ class SingleProjectileAbility extends Ability {
   var damage = 0;
 
   public var projectilePrefab: GameObject;
-  public var projectilePrefabName: String;
+  public var projectilePrefabName = 'Assets/Prefabs/Bullet.prefab';
   public var color = Color.magenta;
 
-  function Awake() {
-    projectilePrefabName = 'Assets/Prefabs/Bullet.prefab';
+  function Start() {
     if (projectilePrefabName) {
       projectilePrefab = AssetDatabase.LoadAssetAtPath(
         projectilePrefabName,
@@ -23,14 +22,21 @@ class SingleProjectileAbility extends Ability {
   }
 
   function useSkill(skillOptions: SkillOptions) {
+    if (!projectilePrefab) {
+      Debug.LogWarning('SingleProjectileAbility: Missing projectilePrefab');
+      return;
+    }
     var character = skillOptions.character;
 
     var bulletObject = Instantiate(
       projectilePrefab, transform.position, Quaternion.identity
     );
     var bullet = bulletObject.GetComponent.<Bullet>();
-    bullet.shooter = character;
-    bullet.fire(skillOptions.direction, damage + character.damage);
+    var projectileOptions = new ProjectileOptions();
+    projectileOptions.damage = damage + character.damage;
+    projectileOptions.direction = skillOptions.direction;
+    projectileOptions.character = skillOptions.character;
+    bullet.fire(projectileOptions);
 
     var skill = GetComponent(Skill);
     if (skill) {

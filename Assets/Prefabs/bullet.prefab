@@ -68,13 +68,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 139770}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 818ceafdd86b542b1be80f64c3837aeb, type: 3}
+  m_Script: {fileID: 11500000, guid: 90c1401a020e1403380895c8fb130683, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  shooter: {fileID: 0}
   damage: 0
   secondsToLive: .800000012
-  DamageText: {fileID: 180608, guid: 522720624a03243d28eea444eca27936, type: 2}
+  speed: 100
+  shootable: {fileID: 0}
 --- !u!212 &21264238
 SpriteRenderer:
   m_ObjectHideFlags: 1

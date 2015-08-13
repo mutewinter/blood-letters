@@ -4,14 +4,10 @@ class MultipleProjectileAbility extends Ability {
   var damage = 0;
 
   public var projectilePrefab: GameObject;
-  public var projectilePrefabName: String;
+  public var projectilePrefabName = 'Assets/Prefabs/Bullet.prefab';
   public var color = Color.magenta;
   public var projectileCount = 3;
   public var spreadAngle = 10;
-
-  function Awake() {
-    projectilePrefabName = 'Assets/Prefabs/Bullet.prefab';
-  }
 
   function Start() {
     if (projectilePrefabName) {
@@ -28,6 +24,11 @@ class MultipleProjectileAbility extends Ability {
   }
 
   function useSkill(skillOptions: SkillOptions) {
+    if (!projectilePrefab) {
+      Debug.LogWarning('MultipleProjectileAbility: Missing projectilePrefab');
+      return;
+    }
+
     var character = skillOptions.character;
 
     for (var i = 0; i < projectileCount; i++) {
@@ -37,7 +38,6 @@ class MultipleProjectileAbility extends Ability {
 
       var bullet = bulletObject.GetComponent.<Bullet>();
       bullet.secondsToLive = 0.4;
-      bullet.shooter = character;
 
       var direction = skillOptions.direction;
 
@@ -53,7 +53,12 @@ class MultipleProjectileAbility extends Ability {
           break;
       }
 
-      bullet.fire(direction, damage + character.damage);
+      // TODO Refactor so we don't mutate the object here.
+      var projectileOptions = new ProjectileOptions();
+      projectileOptions.damage = damage + character.damage;
+      projectileOptions.direction = direction;
+      projectileOptions.character = skillOptions.character;
+      bullet.fire(projectileOptions);
 
       bullet.GetComponent.<Renderer>().material.color = color;
     }
