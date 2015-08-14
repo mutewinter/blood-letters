@@ -3,8 +3,28 @@
 class ProjectileOptions extends System.ValueType {
   public var character: Character;
   public var direction: Vector2;
-  public var damage: int;
   public var shouldDestroyOnHit: boolean;
+  public var baseDamage: int;
+
+  function get damage() {
+    return baseDamage + character.damage;
+  }
+
+  function ProjectileOptions(skillOptions: SkillOptions) {
+    character = skillOptions.character;
+    direction = skillOptions.direction;
+
+    // Defaults
+    shouldDestroyOnHit = true;
+  }
+
+  function ProjectileOptions(skillOptions: SkillOptions, d: Vector2) {
+    character = skillOptions.character;
+    direction = d;
+
+    // Defaults
+    shouldDestroyOnHit = true;
+  }
 }
 
 class Projectile extends MonoBehaviour {

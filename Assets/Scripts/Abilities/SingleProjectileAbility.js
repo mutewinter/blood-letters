@@ -6,7 +6,6 @@ class SingleProjectileAbility extends Ability {
   public var projectilePrefab: GameObject;
   public var projectilePrefabName = 'Assets/Prefabs/Bullet.prefab';
   public var color = Color.magenta;
-  public var shouldDestroyOnHit = false;
   public var callback: Function;
 
   function Start() {
@@ -34,12 +33,9 @@ class SingleProjectileAbility extends Ability {
       projectilePrefab, transform.position, Quaternion.identity
     );
     var bullet = bulletObject.GetComponent.<Bullet>();
-    var projectileOptions = new ProjectileOptions();
-    bullet.callback = callback;
-    projectileOptions.damage = damage + character.damage;
-    projectileOptions.direction = skillOptions.direction;
-    projectileOptions.character = skillOptions.character;
+    var projectileOptions = new ProjectileOptions(skillOptions);
     projectileOptions.shouldDestroyOnHit = shouldDestroyOnHit;
+    bullet.callback = callback;
     bullet.fire(projectileOptions);
 
     var skill = GetComponent(Skill);
