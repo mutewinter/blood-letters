@@ -1,10 +1,5 @@
 #pragma strict
 
-class SkillOptions extends System.ValueType {
-  public var direction: Vector2;
-  public var character: Character;
-}
-
 class Character extends MonoBehaviour {
   public var moveSpeed = 0;
   public var worthExperience = 10;

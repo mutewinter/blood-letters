@@ -2,6 +2,11 @@
 
 import System.Collections.Generic;
 
+class SkillOptions extends System.ValueType {
+  public var direction: Vector2;
+  public var character: Character;
+}
+
 class Skill extends MonoBehaviour {
   public var damage = 1;
   public var damageMin = 1;

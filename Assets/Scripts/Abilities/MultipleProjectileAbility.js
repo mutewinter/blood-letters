@@ -54,7 +54,9 @@ class MultipleProjectileAbility extends Ability {
       }
 
       // TODO Refactor so we don't mutate the object here.
-      var projectileOptions = new ProjectileOptions(skillOptions, direction);
+      var projectileOptions = new ProjectileOptions(
+        skillOptions, direction, damage
+      );
       bullet.fire(projectileOptions);
 
       bullet.GetComponent.<Renderer>().material.color = color;

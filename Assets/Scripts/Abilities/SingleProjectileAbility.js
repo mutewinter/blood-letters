@@ -33,7 +33,7 @@ class SingleProjectileAbility extends Ability {
       projectilePrefab, transform.position, Quaternion.identity
     );
     var projectile = projectileObject.GetComponent.<Projectile>();
-    var projectileOptions = new ProjectileOptions(skillOptions);
+    var projectileOptions = new ProjectileOptions(skillOptions, damage);
     projectileOptions.shouldDestroyOnHit = shouldDestroyOnHit;
     projectile.callback = callback;
     projectile.fire(projectileOptions);

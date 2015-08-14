@@ -4,23 +4,27 @@ class ProjectileOptions extends System.ValueType {
   public var character: Character;
   public var direction: Vector2;
   public var shouldDestroyOnHit: boolean;
-  public var baseDamage: int;
+  public var skillDamage: int;
 
-  function get damage() {
-    return baseDamage + character.damage;
+  function get damage() : int {
+    return skillDamage + character.damage;
   }
 
-  function ProjectileOptions(skillOptions: SkillOptions) {
+  function ProjectileOptions(skillOptions: SkillOptions, damage: int) {
     character = skillOptions.character;
     direction = skillOptions.direction;
+    skillDamage = damage;
 
     // Defaults
     shouldDestroyOnHit = true;
   }
 
-  function ProjectileOptions(skillOptions: SkillOptions, d: Vector2) {
+  function ProjectileOptions(
+    skillOptions: SkillOptions, d: Vector2, damage: int
+  ) {
     character = skillOptions.character;
     direction = d;
+    skillDamage = damage;
 
     // Defaults
     shouldDestroyOnHit = true;
