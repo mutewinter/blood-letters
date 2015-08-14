@@ -1,5 +1,14 @@
 {
-  "Assets/Scripts/**.js": {
-    "type": "script"
+  "Assets/Scripts/Mixins/**.js": {
+    "type": "mixin"
+  },
+  "Assets/Scripts/Abilities/**.js": {
+    "type": "ability"
+  },
+  "Assets/Scripts/Skills/**.js": {
+    "type": "skill"
+  },
+  "Assets/Scripts/Projectiles/**.js": {
+    "type": "projectile"
   }
 }
