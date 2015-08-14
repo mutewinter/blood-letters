@@ -29,20 +29,15 @@ class SingleProjectileAbility extends Ability {
     }
     var character = skillOptions.character;
 
-    var bulletObject = Instantiate(
+    var projectileObject = Instantiate(
       projectilePrefab, transform.position, Quaternion.identity
     );
-    var bullet = bulletObject.GetComponent.<Bullet>();
+    var projectile = projectileObject.GetComponent.<Projectile>();
     var projectileOptions = new ProjectileOptions(skillOptions);
     projectileOptions.shouldDestroyOnHit = shouldDestroyOnHit;
-    bullet.callback = callback;
-    bullet.fire(projectileOptions);
+    projectile.callback = callback;
+    projectile.fire(projectileOptions);
 
-    var skill = GetComponent(Skill);
-    if (skill) {
-      bullet.GetComponent.<Renderer>().material.color = color;
-    }
-
-    return bullet;
+    projectile.GetComponent.<Renderer>().material.color = color;
   }
 }

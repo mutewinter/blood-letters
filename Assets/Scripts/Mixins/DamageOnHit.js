@@ -3,12 +3,10 @@
 class DamageOnHit extends MonoBehaviour {
   public var secondsToLive = 0.8;
   public var speed : float = 100;
-  public var shootable: Shootable;
  
   private var showsPopupDamage: ShowsPopupDamage;
 
-  function get projectileOptions() { return shootable.projectileOptions; }
-  function get projectile() { return shootable.projectile; }
+  public var projectileOptions: ProjectileOptions;
 
   function Awake() {
     showsPopupDamage = gameObject.AddComponent(ShowsPopupDamage);
@@ -24,12 +22,13 @@ class DamageOnHit extends MonoBehaviour {
       );
     }
 
-    if (projectileOptions.shouldDestroyOnHit) {
-      Destroy(projectile);
-    }
+    SendMessageUpwards('hitDamageDone');
   }
 
-  function processHit(victim: Character) {
+  function processHit(
+    victim: Character, newProjectileOptions: ProjectileOptions
+  ) {
+    projectileOptions = newProjectileOptions;
     var shooter = projectileOptions.character;
 
     // Victim or shooter were destroyed, don't evalute further

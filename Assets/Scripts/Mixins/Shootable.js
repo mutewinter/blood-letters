@@ -5,19 +5,25 @@ class Shootable extends MonoBehaviour {
   public var secondsToLive = 0.8;
   public var speed : float = 100;
   public var projectile: GameObject;
+  public var fireCallback: Function;
  
   private var damageOnHit: DamageOnHit;
 
   function Awake() {
     damageOnHit = gameObject.AddComponent(DamageOnHit);
-    damageOnHit.shootable = this;
   }
 
   function fire(newProjectileOptions: ProjectileOptions) {
     projectileOptions = newProjectileOptions;
-    projectile.GetComponent.<Rigidbody2D>().AddForce(
-      newProjectileOptions.direction * speed
-    );
+    if (fireCallback) {
+      // Customizable by implementer.
+      fireCallback(projectileOptions);
+    } else {
+      // Default, just fire in direction.
+      projectile.GetComponent.<Rigidbody2D>().AddForce(
+        newProjectileOptions.direction * speed
+      );
+    }
     yield WaitForSeconds(secondsToLive);
     if (this) {
       Destroy(projectile);
@@ -25,6 +31,12 @@ class Shootable extends MonoBehaviour {
   }
 
   function processHit(victim: Character) {
-    damageOnHit.processHit(victim);
+    damageOnHit.processHit(victim, projectileOptions);
+  }
+
+  function hitDamageDone() {
+    if (projectileOptions.shouldDestroyOnHit) {
+      Destroy(projectile);
+    }
   }
 }

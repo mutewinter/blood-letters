@@ -30,8 +30,7 @@ class Player extends Character {
   }
 
   function Start() {
-    // TODO Start player with sword
-    var skill = gameObject.AddComponent(Bow);
+    var skill = gameObject.AddComponent(Sword);
     skill.damage = 0;
 
     moveSpeed = 2.0;

@@ -54,9 +54,9 @@ class Character extends MonoBehaviour {
   function OnTriggerEnter2D(other: Collider2D) {
     if (health <= 0) { return; }
 
-    var bullet = other.GetComponent.<Bullet>();
-    if (bullet) {
-      bullet.processHit(this);
+    var projectile = other.GetComponent.<Projectile>();
+    if (projectile) {
+      projectile.processHit(this);
     }
 
     var otherCharacter = other.GetComponent.<Character>();
