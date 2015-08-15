@@ -418,7 +418,7 @@ MonoBehaviour:
   - {fileID: 186610, guid: 5d7309887a70244deb4305d19c52bd79, type: 2}
   - {fileID: 114238, guid: 94654a6ce89914fbe9ec5bef092d54cb, type: 2}
   - {fileID: 158560, guid: abc156f7264e74e798085d1408929298, type: 2}
-  player: {fileID: 161910, guid: 4e9ed2063fe8a45c5b86343e0a85ec0d, type: 2}
+  playerPrefab: {fileID: 161910, guid: 4e9ed2063fe8a45c5b86343e0a85ec0d, type: 2}
   wall: {fileID: 109972, guid: a1bb5fbd939fb40fd805d046679f2a0d, type: 2}
   cursorTexture: {fileID: 2800000, guid: 3727596cb9f034fa8b6d91f4894e3c4d, type: 3}
   hotSpot: {x: 5, y: 7}

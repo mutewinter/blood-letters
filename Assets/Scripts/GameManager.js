@@ -1,7 +1,7 @@
 ﻿#pragma strict
 
 public var enemyPrefabs : GameObject[];
-public var player : GameObject;
+public var playerPrefab : GameObject;
 public var wall : GameObject;
 
 // Custom Mouse Cursor
@@ -10,10 +10,12 @@ public var hotSpot: Vector2 = Vector2.zero;
 
 private var mouse = Vector2.zero;
 private var currentStage = 1;
-private var spawnedEnemies = new List.<Character>();
+private var spawnedEnemies = new List.<GameObject>();
+private var player: GameObject;
 
 function Start() {
   spawnWalls();
+  player = spawnPlayer();
   setupStage(currentStage);
 
   // We draw our own cursor below
@@ -21,8 +23,6 @@ function Start() {
 }
 
 function setupStage(stage: int) {
-  spawnPlayer();
-
   var enemyCount = Mathf.CeilToInt(Mathf.Log(stage, 2)) || 1;
 
   for (var i = 0; i < enemyCount; i++) {
@@ -49,7 +49,7 @@ function OnGUI() {
   );
 }
 
-function spawnRandomEnemy() : Character {
+function spawnRandomEnemy() : GameObject {
   var enemyPrefab = enemyPrefabs[Random.Range(0, enemyPrefabs.Length)];
 
   var position = new Vector3(
@@ -58,25 +58,31 @@ function spawnRandomEnemy() : Character {
     0
   );
 
-  var enemyObject = Instantiate(enemyPrefab, position, Quaternion.identity);
-  return enemyObject.GetComponent.<Character>();
+  return Instantiate(enemyPrefab, position, Quaternion.identity);
 }
 
 function spawnPlayer() {
-  Instantiate(player, Vector3.zero, Quaternion.identity);
+  return Instantiate(playerPrefab, Vector3.zero, Quaternion.identity);
 }
 
 function characterDied(character: Character) {
   if (character.transform.tag == 'enemy') {
-    spawnedEnemies.Remove(character);
-    checkForGameOver();
+    spawnedEnemies.Remove(character.gameObject);
   } else if (character instanceof Player) {
-    spawnPlayer();
+    player = null;
   }
+  handleWinLoss();
 }
 
-function checkForGameOver() {
-  if (spawnedEnemies.Count == 0) {
+function handleWinLoss() {
+  if (!player) {
+    for (var enemy in spawnedEnemies) {
+      Destroy(enemy);
+    }
+    player = spawnPlayer();
+    currentStage = 1;
+    setupStage(currentStage);
+  } else if (spawnedEnemies.Count == 0) {
     setupStage(currentStage++);
   }
 }
