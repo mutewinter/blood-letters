@@ -1,9 +1,15 @@
 #pragma strict
 
 class SkillDrop extends MonoBehaviour {
+  public var secondsToLive = 3;
+
   function Start() {
-    // TODO DRY with statusmanager
     updateColliderBounds();
+
+    yield WaitForSeconds(secondsToLive);
+    if (this) {
+      Destroy(gameObject);
+    }
   }
 
   function OnTriggerEnter2D(other: Collider2D) {
