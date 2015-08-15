@@ -15,7 +15,6 @@ private var player: GameObject;
 
 function Start() {
   spawnWalls();
-  player = spawnPlayer();
   setupStage(currentStage);
 
   // We draw our own cursor below
@@ -23,6 +22,9 @@ function Start() {
 }
 
 function setupStage(stage: int) {
+  if (!player) {
+    player = spawnPlayer();
+  }
   var enemyCount = Mathf.CeilToInt(Mathf.Log(stage, 2)) || 1;
 
   for (var i = 0; i < enemyCount; i++) {
@@ -76,15 +78,20 @@ function characterDied(character: Character) {
 
 function handleWinLoss() {
   if (!player) {
-    for (var enemy in spawnedEnemies) {
-      Destroy(enemy);
-    }
-    player = spawnPlayer();
+    // Player died, lost stage.
+    clearEnemies();
     currentStage = 1;
     setupStage(currentStage);
   } else if (spawnedEnemies.Count == 0) {
     setupStage(currentStage++);
   }
+}
+
+function clearEnemies() {
+  for (var enemy in spawnedEnemies) {
+    Destroy(enemy);
+  }
+  spawnedEnemies.Clear();
 }
 
 function spawnWalls() {
