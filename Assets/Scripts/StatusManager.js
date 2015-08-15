@@ -1,7 +1,8 @@
 ﻿#pragma strict
 
 class StatusManager extends MonoBehaviour {
-  public var text: UnityEngine.UI.Text;
+  public var hudText:       UnityEngine.UI.Text;
+  public var titleCardText: UnityEngine.UI.Text;
 
   var _health = 0;
   function get health() { return _health; }
@@ -35,11 +36,16 @@ class StatusManager extends MonoBehaviour {
     _experienceNeededForNextLevel = value; update();
   }
 
-  function Start () {
-    update();
+  function showStageTitle(stage: int) {
+    titleCardText.text = String.Format('Level {0}', stage);
+    var animator = titleCardText.GetComponent.<Animator>();
+    if (animator) {
+      animator.SetTrigger('show');
+    }
   }
 
-  function Update () {
+  function Start() {
+    update();
   }
 
   function update() {
@@ -63,7 +69,7 @@ class StatusManager extends MonoBehaviour {
 
     var killsText = String.Format('Kills: {0}', kills);
 
-    text.text = new Array([
+    hudText.text = new Array([
       healthText,
       levelText,
       damageText,

@@ -7,19 +7,31 @@ public var wall : GameObject;
 // Custom Mouse Cursor
 public var cursorTexture: Texture2D;
 public var hotSpot: Vector2 = Vector2.zero;
+
 private var mouse = Vector2.zero;
+private var currentStage = 1;
+private var spawnedEnemies = new List.<Character>();
 
-function Start () {
+function Start() {
   spawnWalls();
-
-  spawnPlayer();
-
-  for (var i = 0; i < 8; i++) {
-    spawnRandomEnemy();
-  }
+  setupStage(currentStage);
 
   // We draw our own cursor below
   Cursor.visible = false;
+}
+
+function setupStage(stage: int) {
+  spawnPlayer();
+
+  var enemyCount = Mathf.CeilToInt(Mathf.Log(stage, 2)) || 1;
+
+  for (var i = 0; i < enemyCount; i++) {
+    spawnedEnemies.Add(spawnRandomEnemy());
+  }
+
+  var canvas = GameObject.FindWithTag('HUD');
+  var statusManager = canvas.GetComponentInChildren(StatusManager);
+  statusManager.showStageTitle(currentStage);
 }
 
 function Update() {
@@ -37,7 +49,7 @@ function OnGUI() {
   );
 }
 
-function spawnRandomEnemy() {
+function spawnRandomEnemy() : Character {
   var enemyPrefab = enemyPrefabs[Random.Range(0, enemyPrefabs.Length)];
 
   var position = new Vector3(
@@ -45,7 +57,9 @@ function spawnRandomEnemy() {
     Random.Range(-2.0F, 2.0F),
     0
   );
-  Instantiate(enemyPrefab, position, Quaternion.identity);
+
+  var enemyObject = Instantiate(enemyPrefab, position, Quaternion.identity);
+  return enemyObject.GetComponent.<Character>();
 }
 
 function spawnPlayer() {
@@ -53,11 +67,17 @@ function spawnPlayer() {
 }
 
 function characterDied(character: Character) {
-  if (character instanceof Player) {
+  if (character.transform.tag == 'enemy') {
+    spawnedEnemies.Remove(character);
+    checkForGameOver();
+  } else if (character instanceof Player) {
     spawnPlayer();
-  } else {
-    // TODO ensure this is an enemy prefab
-    spawnRandomEnemy();
+  }
+}
+
+function checkForGameOver() {
+  if (spawnedEnemies.Count == 0) {
+    setupStage(currentStage++);
   }
 }
 
