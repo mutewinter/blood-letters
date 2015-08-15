@@ -25,15 +25,15 @@ function setupStage(stage: int) {
   if (!player) {
     player = spawnPlayer();
   }
+  var canvas = GameObject.FindWithTag('HUD');
+  var statusManager = canvas.GetComponentInChildren(StatusManager);
+  statusManager.showStageTitle(currentStage);
+
   var enemyCount = Mathf.CeilToInt(Mathf.Log(stage, 2)) || 1;
 
   for (var i = 0; i < enemyCount; i++) {
     spawnedEnemies.Add(spawnRandomEnemy());
   }
-
-  var canvas = GameObject.FindWithTag('HUD');
-  var statusManager = canvas.GetComponentInChildren(StatusManager);
-  statusManager.showStageTitle(currentStage);
 }
 
 function Update() {
