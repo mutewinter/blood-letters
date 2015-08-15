@@ -13,7 +13,7 @@ GameObject:
   - 61: {fileID: 6156452}
   m_Layer: 0
   m_Name: SkillDrop
-  m_TagString: Untagged
+  m_TagString: SkillDrop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -223,6 +223,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a11f48480440408baf3b39e4e6ce4bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  secondsToLive: 3
 --- !u!114 &11466008
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -252,7 +253,11 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: m_TagString
+      value: SkillDrop
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 144854}

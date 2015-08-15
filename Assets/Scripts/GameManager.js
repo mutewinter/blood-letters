@@ -84,9 +84,11 @@ function handleWinLoss() {
   if (!player) {
     // Player died, lost stage.
     clearEnemies();
+    clearSkillDrops();
     currentStage = 1;
     setupStage(currentStage);
   } else if (spawnedEnemies.Count == 0) {
+    // Player lived, next stage.
     setupStage(currentStage++);
   }
 }
@@ -96,6 +98,13 @@ function clearEnemies() {
     Destroy(enemy);
   }
   spawnedEnemies.Clear();
+}
+
+function clearSkillDrops() {
+  var skillDrops = GameObject.FindGameObjectsWithTag('SkillDrop');
+  for (var skillDrop in skillDrops) {
+    Destroy(skillDrop.gameObject);
+  }
 }
 
 function spawnWalls() {

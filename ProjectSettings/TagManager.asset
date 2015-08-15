@@ -6,6 +6,7 @@ TagManager:
   tags:
   - HUD
   - enemy
+  - SkillDrop
   layers:
   - Default
   - TransparentFX
