@@ -9,7 +9,7 @@ class AIMovable extends MonoBehaviour {
   // Private variables
   private var nextMove : float = 0;
 
-  function Update () {
+  function Update() {
     if (Time.time > nextMove) {
       nextMove = Time.time + moveRate;
       var moveDirection = new Vector2(
