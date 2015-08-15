@@ -29,6 +29,10 @@ function setupStage(stage: int) {
   var statusManager = canvas.GetComponentInChildren(StatusManager);
   statusManager.showStageTitle(currentStage);
 
+  // wait for the end of the level text to spawn enemies
+  // TODO Depend on level animation end, not timer
+  yield WaitForSeconds(1);
+
   var enemyCount = Mathf.CeilToInt(Mathf.Log(stage, 2)) || 1;
 
   for (var i = 0; i < enemyCount; i++) {
