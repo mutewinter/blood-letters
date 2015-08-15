@@ -41,6 +41,9 @@ class Elephant extends Character {
       player = GameObject.FindGameObjectWithTag('Player');
     }
 
+    // No player
+    if (!player) { return; }
+
     var distanceFromPlayer =
       Vector2.Distance(transform.position, player.transform.position);
     if (distanceFromPlayer <= angryDistance) {
@@ -52,12 +55,10 @@ class Elephant extends Character {
   }
 
   function disableAIMovement() {
-    var aiMovable = GetComponent.<AIMovable>();
     aiMovable.enabled = false;
   }
 
   function enableAIMovement() {
-    var aiMovable = GetComponent.<AIMovable>();
     aiMovable.enabled = true;
   }
 

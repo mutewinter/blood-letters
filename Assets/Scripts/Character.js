@@ -6,6 +6,8 @@ class Character extends MonoBehaviour {
   public var bulletPrefab: GameObject;
   public var moveRate : float = Mathf.Infinity;
 
+  protected var aiMovable: AIMovable;
+
   public var _health = 1;
   function get health() : float {
     return _health;
@@ -34,7 +36,7 @@ class Character extends MonoBehaviour {
 
   function Start() {
     // Movable
-    var aiMovable = gameObject.AddComponent(AIMovable);
+    aiMovable = gameObject.AddComponent(AIMovable);
     aiMovable.moveRate = moveRate;
     aiMovable.moveSpeed = moveSpeed;
     aiMovable.target = this;
