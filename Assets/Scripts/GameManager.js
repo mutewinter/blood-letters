@@ -12,8 +12,12 @@ private var mouse = Vector2.zero;
 private var currentStage = 1;
 private var spawnedEnemies = new List.<GameObject>();
 private var player: GameObject;
+private var statusManager: StatusManager;
 
 function Start() {
+  var canvas = GameObject.FindWithTag('HUD');
+  statusManager = canvas.GetComponentInChildren(StatusManager);
+
   spawnWalls();
   setupStage(currentStage);
 
@@ -25,9 +29,7 @@ function setupStage(stage: int) {
   if (!player) {
     player = spawnPlayer();
   }
-  var canvas = GameObject.FindWithTag('HUD');
-  var statusManager = canvas.GetComponentInChildren(StatusManager);
-  statusManager.showStageTitle(currentStage);
+  statusManager.showTitle(String.Format('Stage {0}', stage));
 
   // wait for the end of the level text to spawn enemies
   // TODO Depend on level animation end, not timer
@@ -83,6 +85,9 @@ function characterDied(character: Character) {
 function handleWinLoss() {
   if (!player) {
     // Player died, lost stage.
+    statusManager.showTitle('Game Over', Color.red);
+    yield WaitForSeconds(2);
+
     clearEnemies();
     clearSkillDrops();
     currentStage = 1;

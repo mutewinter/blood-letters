@@ -36,8 +36,13 @@ class StatusManager extends MonoBehaviour {
     _experienceNeededForNextLevel = value; update();
   }
 
-  function showStageTitle(stage: int) {
-    titleCardText.text = String.Format('Level {0}', stage);
+  function showTitle(title: String) {
+    showTitle(title, Color.white);
+  }
+
+  function showTitle(title: String, color: Color) {
+    titleCardText.text = title;
+    titleCardText.color = color;
     var animator = titleCardText.GetComponent.<Animator>();
     if (animator) {
       animator.SetTrigger('show');
