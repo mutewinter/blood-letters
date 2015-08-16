@@ -1,12 +1,18 @@
 #pragma strict
 
 class Character extends MonoBehaviour {
+  // ----------------
+  // Public Variables
+  // ----------------
+
   public var moveSpeed = 0;
   public var worthExperience = 10;
   public var bulletPrefab: GameObject;
   public var moveRate : float = Mathf.Infinity;
 
-  protected var aiMovable: AIMovable;
+  // -------------------
+  // Getters and Setters
+  // -------------------
 
   public var _health = 1;
   function get health() : float {
@@ -16,7 +22,7 @@ class Character extends MonoBehaviour {
     _health = value;
   }
 
-  public var _level = 1;
+  protected var _level = 1;
   function get level() : int { return _level; }
   function set level(value : int) { level = value; }
 
@@ -30,9 +36,25 @@ class Character extends MonoBehaviour {
     return skill ? skill.damage : 0;
   }
 
-  public var _kills = 0;
+  protected var _kills = 0;
   function get kills() { return _kills; }
   function set kills(value: int) { _kills = value; }
+
+  // -------------------
+  // Protected Variables
+  // -------------------
+
+  protected var aiMovable: AIMovable;
+  protected var showsPopupDamage: ShowsPopupDamage;
+
+
+  // ---------
+  // Functions
+  // ---------
+
+  function Awake() {
+    showsPopupDamage = gameObject.AddComponent(ShowsPopupDamage);
+  }
 
   function Start() {
     // Movable
@@ -109,6 +131,10 @@ class Character extends MonoBehaviour {
   }
 
   function takeDamage(damage: int, otherCharacter: Character) {
+    if (damage <= 0) { return; }
+
+    showsPopupDamage.showPopupDamage(damage, transform.position);
+
     health -= damage;
 
     if (health <= 0) {

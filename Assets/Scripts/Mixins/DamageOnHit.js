@@ -4,22 +4,11 @@ class DamageOnHit extends MonoBehaviour {
   public var secondsToLive = 0.8;
   public var speed : float = 100;
  
-  private var showsPopupDamage: ShowsPopupDamage;
-
   public var projectileOptions: ProjectileOptions;
-
-  function Awake() {
-    showsPopupDamage = gameObject.AddComponent(ShowsPopupDamage);
-  }
 
   function hit(other: Character) {
     if (projectileOptions.damage > 0) {
       other.takeDamage(projectileOptions.damage, projectileOptions.character);
-
-      // TODO Move into Character
-      yield showsPopupDamage.showPopupDamage(
-        projectileOptions.damage, other.transform.position
-      );
     }
 
     SendMessageUpwards('hitDamageDone');
