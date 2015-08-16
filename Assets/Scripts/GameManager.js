@@ -94,7 +94,7 @@ function handleWinLoss() {
     setupStage(currentStage);
   } else if (spawnedEnemies.Count == 0) {
     // Player lived, next stage.
-    setupStage(currentStage++);
+    setupStage(++currentStage);
   }
 }
 
