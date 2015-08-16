@@ -37,8 +37,13 @@ function setupStage(stage: int) {
 
   var enemyCount = Mathf.CeilToInt(Mathf.Log(stage, 2)) || 1;
 
-  for (var i = 0; i < enemyCount; i++) {
-    spawnedEnemies.Add(spawnRandomEnemy());
+  if (stage == 1) {
+    // First stage, only spawn a goblin.
+    spawnGoblin();
+  } else {
+    for (var i = 0; i < enemyCount; i++) {
+      spawnRandomEnemy();
+    }
   }
 }
 
@@ -57,8 +62,8 @@ function OnGUI() {
   );
 }
 
-function spawnRandomEnemy() : GameObject {
-  var enemyPrefab = enemyPrefabs[Random.Range(0, enemyPrefabs.Length)];
+function spawnEnemyAtIndex(index: int) {
+  var enemyPrefab = enemyPrefabs[index];
 
   var position = new Vector3(
     Random.Range(-2.0F, 2.0F),
@@ -66,7 +71,16 @@ function spawnRandomEnemy() : GameObject {
     0
   );
 
-  return Instantiate(enemyPrefab, position, Quaternion.identity);
+  var enemyObject = Instantiate(enemyPrefab, position, Quaternion.identity);
+  spawnedEnemies.Add(enemyObject);
+}
+
+function spawnGoblin() {
+  spawnEnemyAtIndex(0);
+}
+
+function spawnRandomEnemy() {
+  spawnEnemyAtIndex(Random.Range(0, enemyPrefabs.Length));
 }
 
 function spawnPlayer() {
