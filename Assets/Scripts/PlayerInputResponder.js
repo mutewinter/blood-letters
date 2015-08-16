@@ -2,7 +2,11 @@
 
 private var nextFire : float = 0;
 
-function Update () {
+function Start() {
+  centerCameraOnPlayer();
+}
+
+function Update() {
   var player = GetComponent.<Player>();
 
   if (Input.GetMouseButton(0) && Time.time > nextFire) {
@@ -24,12 +28,15 @@ function Update () {
     transform.position = Vector2.MoveTowards(
       transform.position, target, player.moveSpeed * Time.deltaTime
     );
-
-    var mainCamera = GameObject.FindWithTag('MainCamera');
-    mainCamera.transform.position = Vector3(
-      transform.position.x,
-      transform.position.y,
-      mainCamera.transform.position.z
-    );
+    centerCameraOnPlayer();
   }
+}
+
+function centerCameraOnPlayer() {
+  var mainCamera = GameObject.FindWithTag('MainCamera');
+  mainCamera.transform.position = Vector3(
+    transform.position.x,
+    transform.position.y,
+    mainCamera.transform.position.z
+  );
 }
