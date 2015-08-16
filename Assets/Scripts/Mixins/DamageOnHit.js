@@ -3,7 +3,7 @@
 class DamageOnHit extends MonoBehaviour {
   public var secondsToLive = 0.8;
   public var speed : float = 100;
- 
+
   public var projectileOptions: ProjectileOptions;
 
   function hit(other: Character) {
