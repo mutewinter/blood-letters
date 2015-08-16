@@ -29,6 +29,11 @@ class Player extends Character {
     _health = value; updateStatusManager();
   }
 
+  function Awake() {
+    super.Awake();
+    showsPopupDamage.color = Color.red;
+  }
+
   function Start() {
     var skill = gameObject.AddComponent(Sword);
     skill.damage = 0;

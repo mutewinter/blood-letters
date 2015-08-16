@@ -1,6 +1,8 @@
 #pragma strict
 
 class ShowsPopupDamage extends MonoBehaviour {
+  public var color = Color.white;
+
   private var damageTextPrefab : GameObject;
 
   function Awake() {
@@ -20,7 +22,8 @@ class ShowsPopupDamage extends MonoBehaviour {
       damageTextPrefab, textPosition, Quaternion.identity
     );
     var textMesh = damageText.GetComponent.<TextMesh>();
-    textMesh.text = String.Format('-{0}', amount);
+    textMesh.color = color;
+    textMesh.text = String.Format('{0}', amount);
 
     return void;
   }
