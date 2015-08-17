@@ -10,5 +10,8 @@
   },
   "Assets/Scripts/Projectiles/**.js": {
     "type": "projectile"
+  },
+  "Assets/Scripts/Characters/**.js": {
+    "type": "character"
   }
 }
