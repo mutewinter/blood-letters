@@ -37,15 +37,20 @@ class SkillDrop extends MonoBehaviour {
 
   function updateTooltip() {
     var skill = GetComponent(Skill);
-    if (skill) {
+    if (!skill) { return; }
+
+    var tooltip = GetComponentInChildren(Tooltip);
+    if (skill.damage > 0) {
       var damageSign = skill.damage > 0 ? '+' : '';
-      var tooltip = GetComponentInChildren(Tooltip);
       tooltip.text = String.Format('{0}{1}', damageSign, skill.damage);
+    } else {
+      tooltip.text = '';
     }
   }
 
   function skillAdded(skill: Skill) {
     getSymbol().text = skill.symbol;
+    getSymbol().color = skill.dropColor;
     updateTooltip();
     updateColliderBounds();
   }

@@ -22,7 +22,7 @@ class Elephant extends Character {
 
     super.Start();
 
-    GetComponent.<DropsSkills>().possibleSkillsDropped.Add(FireBow);
+    dropsSkills.possibleSkillsDropped.Add(FireBow);
 
     // Elephant doesn't move until the player gets too close
     disableAIMovement();

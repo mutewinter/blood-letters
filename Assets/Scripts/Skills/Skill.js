@@ -8,6 +8,8 @@ class SkillOptions extends System.ValueType {
 }
 
 class Skill extends MonoBehaviour {
+  public var dropColor = Color.white;
+
   public var damage = 1;
   public var damageMin = 1;
   public var damageMax = 1;

@@ -31,7 +31,7 @@ class Player extends Character {
 
   function Awake() {
     super.Awake();
-    showsPopupDamage.color = Color.red;
+    showsPopupText.defaultColor = Color.red;
   }
 
   function Start() {
@@ -55,6 +55,11 @@ class Player extends Character {
 
   function pickUp(newSkill: Skill) {
     var skill = GetComponent(Skill);
+    if (newSkill instanceof Health) {
+      Debug.Log(String.Format("(newSkill as Health).healingj: {0}", (newSkill as Health).healing));
+      heal((newSkill as Health).healing);
+      return;
+    }
     // Destroy the old skill so it can be replaced.
     if (skill) {
       Destroy(skill);

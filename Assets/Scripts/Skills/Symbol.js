@@ -9,6 +9,15 @@ function set text(value: string) {
   textMesh.text = value;
 }
 
+function get color() {
+  var textMesh = GetComponent.<TextMesh>();
+  return textMesh.color;
+}
+function set color(value: Color) {
+  var textMesh = GetComponent.<TextMesh>();
+  textMesh.color = value;
+}
+
 function Start () {
 
 }

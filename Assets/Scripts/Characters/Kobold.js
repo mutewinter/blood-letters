@@ -13,7 +13,7 @@ class Kobold extends Character {
     var skill = gameObject.AddComponent(Bow);
     skill.damage = 1;
     super.Start();
-    GetComponent.<DropsSkills>().possibleSkillsDropped.Add(Bow);
+    dropsSkills.possibleSkillsDropped.Add(Bow);
   }
 
   function Update () {

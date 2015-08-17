@@ -45,15 +45,15 @@ class Character extends MonoBehaviour {
   // -------------------
 
   protected var aiMovable: AIMovable;
-  protected var showsPopupDamage: ShowsPopupDamage;
-
+  protected var showsPopupText: ShowsPopupText;
+  protected var dropsSkills: DropsSkills;
 
   // ---------
   // Functions
   // ---------
 
   function Awake() {
-    showsPopupDamage = gameObject.AddComponent(ShowsPopupDamage);
+    showsPopupText = gameObject.AddComponent(ShowsPopupText);
   }
 
   function Start() {
@@ -63,9 +63,17 @@ class Character extends MonoBehaviour {
     aiMovable.moveSpeed = moveSpeed;
     aiMovable.target = this;
 
-    // DropsSkills
-    var DropsSkills = gameObject.AddComponent(DropsSkills);
-    aiMovable.target = this;
+    if (isEnemy()) {
+      // DropsSkills
+      dropsSkills = gameObject.AddComponent(DropsSkills);
+      // All characters can drop health.
+      dropsSkills.possibleSkillsDropped.Add(Health);
+      aiMovable.target = this;
+    }
+  }
+
+  function isEnemy() {
+    return transform.tag == 'enemy';
   }
 
   function gainExperience(experience: int) {}
@@ -133,7 +141,7 @@ class Character extends MonoBehaviour {
   function takeDamage(damage: int, otherCharacter: Character) {
     if (damage <= 0) { return; }
 
-    showsPopupDamage.showPopupDamage(damage, transform.position);
+    showsPopupText.show(damage, transform.position);
 
     health -= damage;
 
@@ -149,6 +157,11 @@ class Character extends MonoBehaviour {
       // Damaged
       animateHit();
     }
+  }
+
+  function heal(healAmount: int) {
+    health += healAmount;
+    showsPopupText.show(healAmount, transform.position, Color.green);
   }
 
   function attack(direction: Vector2) {
