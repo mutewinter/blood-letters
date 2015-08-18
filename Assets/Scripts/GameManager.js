@@ -1,8 +1,9 @@
 ﻿#pragma strict
 
-public var enemyPrefabs : GameObject[];
+import System.Collections.Generic;
+
 public var playerPrefab : GameObject;
-public var wall : GameObject;
+public var roomPrefab: GameObject;
 
 // Custom Mouse Cursor
 public var cursorTexture: Texture2D;
@@ -10,15 +11,14 @@ public var hotSpot: Vector2 = Vector2.zero;
 
 private var mouse = Vector2.zero;
 private var currentStage = 1;
-private var spawnedEnemies = new List.<GameObject>();
 private var player: GameObject;
 private var statusManager: StatusManager;
+private var rooms = new List.<Room>();
 
 function Start() {
   var canvas = GameObject.FindWithTag('HUD');
   statusManager = canvas.GetComponentInChildren(StatusManager);
 
-  spawnWalls();
   setupStage(currentStage);
 
   // We draw our own cursor below
@@ -31,20 +31,11 @@ function setupStage(stage: int) {
   }
   statusManager.showTitle(String.Format('Stage {0}', stage));
 
-  // wait for the end of the level text to spawn enemies
-  // TODO Depend on level animation end, not timer
-  yield WaitForSeconds(1);
-
   var enemyCount = Mathf.CeilToInt(Mathf.Log(stage, 2)) || 1;
+  var roomSize = 2.5;
 
-  if (stage == 1) {
-    // First stage, only spawn a goblin.
-    spawnGoblin();
-  } else {
-    for (var i = 0; i < enemyCount; i++) {
-      spawnRandomEnemy();
-    }
-  }
+  makeRoom(Vector2.zero, roomSize, Vector2.right, enemyCount);
+  makeRoom(Vector2(5, 0), roomSize, Vector2.left, enemyCount);
 }
 
 function Update() {
@@ -62,34 +53,15 @@ function OnGUI() {
   );
 }
 
-function spawnEnemyAtIndex(index: int) {
-  var enemyPrefab = enemyPrefabs[index];
-
-  var position = new Vector3(
-    Random.Range(-2.0F, 2.0F),
-    Random.Range(-2.0F, 2.0F),
-    0
-  );
-
-  var enemyObject = Instantiate(enemyPrefab, position, Quaternion.identity);
-  spawnedEnemies.Add(enemyObject);
-}
-
-function spawnGoblin() {
-  spawnEnemyAtIndex(0);
-}
-
-function spawnRandomEnemy() {
-  spawnEnemyAtIndex(Random.Range(0, enemyPrefabs.Length));
-}
-
 function spawnPlayer() {
   return Instantiate(playerPrefab, Vector3.zero, Quaternion.identity);
 }
 
 function characterDied(character: Character) {
   if (character.transform.tag == 'enemy') {
-    spawnedEnemies.Remove(character.gameObject);
+    for (var room in rooms) {
+      room.removeEnemy(character.gameObject);
+    }
   } else if (character instanceof Player) {
     player = null;
   }
@@ -106,17 +78,16 @@ function handleWinLoss() {
     clearSkillDrops();
     currentStage = 1;
     setupStage(currentStage);
-  } else if (spawnedEnemies.Count == 0) {
+  } else if (spawnedEnemyCount() == 0) {
     // Player lived, next stage.
     setupStage(++currentStage);
   }
 }
 
 function clearEnemies() {
-  for (var enemy in spawnedEnemies) {
-    Destroy(enemy);
+  for (var room in rooms) {
+    Destroy(room);
   }
-  spawnedEnemies.Clear();
 }
 
 function clearSkillDrops() {
@@ -126,17 +97,24 @@ function clearSkillDrops() {
   }
 }
 
-function spawnWalls() {
-  // Right
-  Instantiate(wall, Vector2(2.5, 0), Quaternion.identity);
-  // Left
-  Instantiate(wall, Vector2(-2.5, 0), Quaternion.identity);
+function makeRoom(
+  position: Vector2,
+  size: float,
+  doorPosition: Vector2,
+  enemyCount: int
+) {
+  var roomObject = Instantiate(roomPrefab, position, Quaternion.identity);
+  var room = roomObject.GetComponent(Room);
+  room.doorPosition = doorPosition;
+  room.enemyCount = enemyCount;
+  room.size = size;
+  rooms.Add(room);
+}
 
-  var horizontalRotation = Quaternion.identity;
-  horizontalRotation.eulerAngles = Vector3(0, 0, 90);
-
-  // Bottom
-  Instantiate(wall, Vector2(0, 2.5), horizontalRotation);
-  // Top
-  Instantiate(wall, Vector2(0, -2.5), horizontalRotation);
+function spawnedEnemyCount() : int {
+  var count = 0;
+  for (var room in rooms) {
+    count += room.spawnedEnemyCount();
+  }
+  return count;
 }
