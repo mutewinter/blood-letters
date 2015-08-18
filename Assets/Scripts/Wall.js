@@ -1,13 +1,5 @@
 ﻿#pragma strict
 
-function Start () {
-
-}
-
-function Update () {
-
-}
-
 function reflectCollider2D(other: Collider2D) {
   var rigidbody2D = other.GetComponentInParent.<Rigidbody2D>();
   if (rigidbody2D) {
