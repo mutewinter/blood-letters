@@ -3,8 +3,8 @@
 import System.Collections.Generic;
 
 public var playerPrefab : GameObject;
-public var squareRoomDB: GameObject;
-public var squareRoomNT: GameObject;
+public var squareRoomPrefab: GameObject;
+public var enemyPrefabs : GameObject[];
 
 // Custom Mouse Cursor
 public var cursorTexture: Texture2D;
@@ -33,9 +33,15 @@ function setupStage(stage: int) {
   statusManager.showTitle(String.Format('Stage {0}', stage));
 
   var enemyCount = Mathf.CeilToInt(Mathf.Log(stage, 2)) || 1;
+  var enemyPrefabsToSpawn = enemyPrefabs;
 
-  makeRoom(squareRoomDB, Vector2.zero, enemyCount);
-  makeRoom(squareRoomNT, Vector2(0, -5), enemyCount);
+  if (stage == 1) {
+    enemyPrefabsToSpawn = [enemyPrefabsToSpawn[0]];
+  }
+  makeSquareRoom(Vector2.zero, Vector2.down, enemyPrefabsToSpawn, enemyCount);
+  makeSquareRoomWithoutWall(
+    Vector2(0, -5), Vector2.up, enemyPrefabsToSpawn, enemyCount
+  );
 }
 
 function Update() {
@@ -97,10 +103,29 @@ function clearSkillDrops() {
   }
 }
 
-function makeRoom(prefab: GameObject, position: Vector2, enemyCount: int) {
-  var roomObject = Instantiate(prefab, position, Quaternion.identity);
-  var room = roomObject.GetComponentInChildren(Room);
-  room.enemyCount = enemyCount;
+function makeSquareRoom(
+  position: Vector2,
+  doorPosition: Vector2,
+  enemyPrefabsToSpawn: GameObject[],
+  enemyCount: int
+) {
+  var roomObject = Instantiate(squareRoomPrefab, position, Quaternion.identity);
+  var room = roomObject.GetComponent(SquareRoom);
+  room.spawnEnemies(enemyCount, enemyPrefabsToSpawn);
+  room.addDoor(doorPosition);
+  rooms.Add(room);
+}
+
+function makeSquareRoomWithoutWall(
+  position: Vector2,
+  emptyWallPosition: Vector2,
+  enemyPrefabsToSpawn: GameObject[],
+  enemyCount: int
+) {
+  var roomObject = Instantiate(squareRoomPrefab, position, Quaternion.identity);
+  var room = roomObject.GetComponent(SquareRoom);
+  room.spawnEnemies(enemyCount, enemyPrefabsToSpawn);
+  room.removeWall(emptyWallPosition);
   rooms.Add(room);
 }
 

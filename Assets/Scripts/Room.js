@@ -4,37 +4,23 @@ import System.Collections.Generic;
 
 // Rename to room spawner
 class Room extends MonoBehaviour {
-  public var enemyPrefabs : GameObject[];
-  public var doorPosition = Vector2.zero;
-  public var enemyCount = 0;
-  public var size = 0f;
-
   private var spawnedEnemies = new List.<GameObject>();
-
-  function Start() {
-    // wait for the end of the level text to spawn enemies
-    // TODO Depend on level animation end, not timer
-    yield WaitForSeconds(1);
-
-    if (enemyCount == 1) {
-      // First stage, only spawn a goblin.
-      spawnGoblin();
-    } else {
-      for (var i = 0; i < enemyCount; i++) {
-        spawnRandomEnemy();
-      }
-    }
-  }
 
   function OnDestroy() {
     clearEnemies();
   }
 
-  function spawnEnemyAtIndex(index: int) {
+  function spawnEnemies(enemyCount: int, enemyPrefabs: GameObject[]) {
+    for (var i = 0; i < enemyCount; i++) {
+      spawnRandomEnemy(enemyPrefabs);
+    }
+  }
+
+  function spawnEnemyAtIndex(index: int, enemyPrefabs: GameObject[]) {
     var enemyPrefab = enemyPrefabs[index];
 
     // Room is added to a room object.
-    var position = transform.parent.position;
+    var position = transform.position;
     position.x += Random.Range(-2.0F, 2.0F);
     position.y += Random.Range(-2.0F, 2.0F);
 
@@ -42,12 +28,8 @@ class Room extends MonoBehaviour {
     spawnedEnemies.Add(enemyObject);
   }
 
-  function spawnGoblin() {
-    spawnEnemyAtIndex(0);
-  }
-
-  function spawnRandomEnemy() {
-    spawnEnemyAtIndex(Random.Range(0, enemyPrefabs.Length));
+  function spawnRandomEnemy(enemyPrefabs: GameObject[]) {
+    spawnEnemyAtIndex(Random.Range(0, enemyPrefabs.Length), enemyPrefabs);
   }
 
   function removeEnemy(enemy: GameObject) {
