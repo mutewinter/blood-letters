@@ -27,10 +27,15 @@ function Start() {
 }
 
 function setupStage(stage: int) {
+  statusManager.showTitle(String.Format('Stage {0}', stage));
+
+  resetStage();
   if (!player) {
     player = spawnPlayer();
   }
-  statusManager.showTitle(String.Format('Stage {0}', stage));
+
+  player.transform.position = Vector2.zero;
+  centerCameraOnPlayer();
 
   var enemyCount = Mathf.CeilToInt(Mathf.Log(stage, 2)) || 1;
   var enemyPrefabsToSpawn = enemyPrefabs;
@@ -38,9 +43,21 @@ function setupStage(stage: int) {
   if (stage == 1) {
     enemyPrefabsToSpawn = [enemyPrefabsToSpawn[0]];
   }
-  makeSquareRoom(Vector2.zero, Vector2.down, enemyPrefabsToSpawn, enemyCount);
+
+  var directions = [
+    Vector2.up,
+    Vector2.right,
+    Vector2.down,
+    Vector2.left
+  ];
+  var doorDirection = directions[Random.Range(0, directions.length)];
+
+  makeSquareRoom(Vector2.zero, doorDirection, enemyPrefabsToSpawn, enemyCount);
+
+  var secondRoomPosition = doorDirection * 5;
+
   makeSquareRoomWithoutWall(
-    Vector2(0, -5), Vector2.up, enemyPrefabsToSpawn, enemyCount
+    secondRoomPosition, -doorDirection, enemyPrefabsToSpawn, enemyCount
   );
 }
 
@@ -80,20 +97,22 @@ function handleWinLoss() {
     statusManager.showTitle('Game Over', Color.red);
     yield WaitForSeconds(2);
 
-    clearEnemies();
-    clearSkillDrops();
     currentStage = 1;
     setupStage(currentStage);
   } else if (spawnedEnemyCount() == 0) {
     // Player lived, next stage.
+    statusManager.showTitle('Stage Clear', Color.green);
+    yield WaitForSeconds(2.5);
     setupStage(++currentStage);
   }
 }
 
-function clearEnemies() {
+function resetStage() {
+  clearSkillDrops();
   for (var room in rooms) {
-    Destroy(room);
+    Destroy(room.gameObject);
   }
+  rooms.Clear();
 }
 
 function clearSkillDrops() {
@@ -135,4 +154,14 @@ function spawnedEnemyCount() : int {
     count += room.spawnedEnemyCount();
   }
   return count;
+}
+
+// TODO DRY with PlayerInputResponder
+function centerCameraOnPlayer() {
+  var mainCamera = GameObject.FindWithTag('MainCamera');
+  mainCamera.transform.position = Vector3(
+    player.transform.position.x,
+    player.transform.position.y,
+    mainCamera.transform.position.z
+  );
 }
