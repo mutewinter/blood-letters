@@ -3,7 +3,8 @@
 import System.Collections.Generic;
 
 public var playerPrefab : GameObject;
-public var roomPrefab: GameObject;
+public var squareRoomDB: GameObject;
+public var squareRoomNT: GameObject;
 
 // Custom Mouse Cursor
 public var cursorTexture: Texture2D;
@@ -32,10 +33,9 @@ function setupStage(stage: int) {
   statusManager.showTitle(String.Format('Stage {0}', stage));
 
   var enemyCount = Mathf.CeilToInt(Mathf.Log(stage, 2)) || 1;
-  var roomSize = 2.5;
 
-  makeRoom(Vector2.zero, roomSize, Vector2.right, enemyCount);
-  makeRoom(Vector2(5, 0), roomSize, Vector2.left, enemyCount);
+  makeRoom(squareRoomDB, Vector2.zero, enemyCount);
+  makeRoom(squareRoomNT, Vector2(0, -5), enemyCount);
 }
 
 function Update() {
@@ -97,17 +97,10 @@ function clearSkillDrops() {
   }
 }
 
-function makeRoom(
-  position: Vector2,
-  size: float,
-  doorPosition: Vector2,
-  enemyCount: int
-) {
-  var roomObject = Instantiate(roomPrefab, position, Quaternion.identity);
-  var room = roomObject.GetComponent(Room);
-  room.doorPosition = doorPosition;
+function makeRoom(prefab: GameObject, position: Vector2, enemyCount: int) {
+  var roomObject = Instantiate(prefab, position, Quaternion.identity);
+  var room = roomObject.GetComponentInChildren(Room);
   room.enemyCount = enemyCount;
-  room.size = size;
   rooms.Add(room);
 }
 
