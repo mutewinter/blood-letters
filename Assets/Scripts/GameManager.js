@@ -52,7 +52,9 @@ function setupStage(stage: int) {
   ];
   var doorDirection = directions[Random.Range(0, directions.length)];
 
-  makeSquareRoom(Vector2.zero, doorDirection, enemyPrefabsToSpawn, enemyCount);
+  makeSquareRoomWithDoor(
+    Vector2.zero, doorDirection, enemyPrefabsToSpawn, enemyCount
+  );
 
   var secondRoomPosition = doorDirection * 5;
 
@@ -124,15 +126,26 @@ function clearSkillDrops() {
 
 function makeSquareRoom(
   position: Vector2,
+  enemyPrefabsToSpawn: GameObject[],
+  enemyCount: int
+) : SquareRoom {
+  var roomObject = Instantiate(squareRoomPrefab, position, Quaternion.identity);
+  var squareRoom = roomObject.GetComponent(SquareRoom);
+  squareRoom.enemyPrefabsToSpawn = enemyPrefabsToSpawn;
+  squareRoom.enemyCount = enemyCount;
+  rooms.Add(squareRoom);
+
+  return squareRoom;
+}
+
+function makeSquareRoomWithDoor(
+  position: Vector2,
   doorPosition: Vector2,
   enemyPrefabsToSpawn: GameObject[],
   enemyCount: int
 ) {
-  var roomObject = Instantiate(squareRoomPrefab, position, Quaternion.identity);
-  var room = roomObject.GetComponent(SquareRoom);
-  room.spawnEnemies(enemyCount, enemyPrefabsToSpawn);
-  room.addDoor(doorPosition);
-  rooms.Add(room);
+  var squareRoom = makeSquareRoom(position, enemyPrefabsToSpawn, enemyCount);
+  squareRoom.addDoor(doorPosition);
 }
 
 function makeSquareRoomWithoutWall(
@@ -141,11 +154,8 @@ function makeSquareRoomWithoutWall(
   enemyPrefabsToSpawn: GameObject[],
   enemyCount: int
 ) {
-  var roomObject = Instantiate(squareRoomPrefab, position, Quaternion.identity);
-  var room = roomObject.GetComponent(SquareRoom);
-  room.spawnEnemies(enemyCount, enemyPrefabsToSpawn);
-  room.removeWall(emptyWallPosition);
-  rooms.Add(room);
+  var squareRoom = makeSquareRoom(position, enemyPrefabsToSpawn, enemyCount);
+  squareRoom.removeWall(emptyWallPosition);
 }
 
 function spawnedEnemyCount() : int {

@@ -4,20 +4,23 @@ import System.Collections.Generic;
 
 // Rename to room spawner
 class Room extends MonoBehaviour {
+  public var enemyCount: int;
+  public var enemyPrefabsToSpawn: GameObject[];
+
   private var spawnedEnemies = new List.<GameObject>();
 
   function OnDestroy() {
     clearEnemies();
   }
 
-  function spawnEnemies(enemyCount: int, enemyPrefabs: GameObject[]) {
+  function spawnEnemies() {
     for (var i = 0; i < enemyCount; i++) {
-      spawnRandomEnemy(enemyPrefabs);
+      spawnRandomEnemy();
     }
   }
 
-  function spawnEnemyAtIndex(index: int, enemyPrefabs: GameObject[]) {
-    var enemyPrefab = enemyPrefabs[index];
+  function spawnEnemyAtIndex(index: int) {
+    var enemyPrefab = enemyPrefabsToSpawn[index];
 
     // Room is added to a room object.
     var position = transform.position;
@@ -28,8 +31,8 @@ class Room extends MonoBehaviour {
     spawnedEnemies.Add(enemyObject);
   }
 
-  function spawnRandomEnemy(enemyPrefabs: GameObject[]) {
-    spawnEnemyAtIndex(Random.Range(0, enemyPrefabs.Length), enemyPrefabs);
+  function spawnRandomEnemy() {
+    spawnEnemyAtIndex(Random.Range(0, enemyPrefabsToSpawn.Length));
   }
 
   function removeEnemy(enemy: GameObject) {
@@ -45,5 +48,9 @@ class Room extends MonoBehaviour {
       Destroy(enemy);
     }
     spawnedEnemies.Clear();
+  }
+
+  function onAnimatedIn() {
+    spawnEnemies();
   }
 }
