@@ -5,6 +5,7 @@ import System.Collections.Generic;
 class SquareRoom extends Room {
   public var walls: GameObject[];
   public var doors: GameObject[];
+  public var insideWrapper: GameObject;
 
   function addDoor(side: Vector2) {
     removeWall(side);
@@ -38,6 +39,21 @@ class SquareRoom extends Room {
       case Vector2.left:
         walls[3].SetActive(false);
         break;
+    }
+  }
+
+  function animateIn() {
+    var animator = gameObject.GetComponent(Animator);
+    if (animator) {
+      animator.SetTrigger('animateIn');
+    }
+  }
+
+  function OnTriggerEnter2D(other: Collider2D) {
+    if (other.GetComponentInParent(Character)) {
+      // Once we're animated in, we don't need to handle collisions anymore.
+      GetComponent(BoxCollider2D).enabled = false;
+      super.OnTriggerEnter2D(other);
     }
   }
 }

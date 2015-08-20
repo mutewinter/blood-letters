@@ -104,7 +104,7 @@ function handleWinLoss() {
 
     currentStage = 1;
     setupStage(currentStage);
-  } else if (spawnedEnemyCount() == 0) {
+  } else if (areAllRoomsFinished()) {
     // Player lived, next stage.
     statusManager.showTitle('Stage Clear', Color.green);
     yield WaitForSeconds(2.5);
@@ -167,6 +167,22 @@ function spawnedEnemyCount() : int {
     count += room.spawnedEnemyCount();
   }
   return count;
+}
+
+function anyRoomsHaveEnemies() : boolean {
+  return spawnedEnemyCount() > 0;
+}
+
+function allRoomsHaveSpawned() : boolean {
+  for (var room in rooms) {
+    if (!room.hasSpawnedEnemies) { return false; }
+  }
+
+  return true;
+}
+
+function areAllRoomsFinished() : boolean {
+  return allRoomsHaveSpawned() && !anyRoomsHaveEnemies();
 }
 
 // TODO DRY with PlayerInputResponder

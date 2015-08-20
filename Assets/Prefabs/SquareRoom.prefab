@@ -10,6 +10,7 @@ GameObject:
   - 4: {fileID: 471726}
   - 114: {fileID: 11406472}
   - 95: {fileID: 9511802}
+  - 61: {fileID: 6186110}
   m_Layer: 0
   m_Name: SquareRoom
   m_TagString: Untagged
@@ -38,7 +39,7 @@ GameObject:
   m_IsActive: 1
 --- !u!1 &108872
 GameObject:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
@@ -53,7 +54,7 @@ GameObject:
   m_IsActive: 0
 --- !u!1 &116046
 GameObject:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
@@ -91,7 +92,7 @@ GameObject:
   m_IsActive: 1
 --- !u!1 &118906
 GameObject:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
@@ -123,9 +124,24 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &152666
+--- !u!1 &122068
 GameObject:
   m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 477716}
+  m_Layer: 0
+  m_Name: InsideWrapper
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!1 &152666
+GameObject:
+  m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
@@ -144,7 +160,7 @@ GameObject:
   m_IsActive: 1
 --- !u!1 &153096
 GameObject:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
@@ -182,7 +198,7 @@ GameObject:
   m_IsActive: 1
 --- !u!1 &164994
 GameObject:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
@@ -201,7 +217,7 @@ GameObject:
   m_IsActive: 1
 --- !u!1 &176458
 GameObject:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
@@ -235,7 +251,7 @@ GameObject:
   m_IsActive: 1
 --- !u!1 &178514
 GameObject:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
@@ -315,7 +331,7 @@ Transform:
   m_LocalPosition: {x: 0, y: -2.5, z: 0}
   m_LocalScale: {x: 10, y: 35, z: 0}
   m_Children: []
-  m_Father: {fileID: 471726}
+  m_Father: {fileID: 477716}
   m_RootOrder: 2
 --- !u!4 &403384
 Transform:
@@ -329,7 +345,7 @@ Transform:
   m_Children:
   - {fileID: 408260}
   - {fileID: 407540}
-  m_Father: {fileID: 471726}
+  m_Father: {fileID: 477716}
   m_RootOrder: 5
 --- !u!4 &406298
 Transform:
@@ -391,7 +407,7 @@ Transform:
   m_Children:
   - {fileID: 435520}
   - {fileID: 464724}
-  m_Father: {fileID: 471726}
+  m_Father: {fileID: 477716}
   m_RootOrder: 6
 --- !u!4 &424642
 Transform:
@@ -429,7 +445,7 @@ Transform:
   m_Children:
   - {fileID: 406298}
   - {fileID: 424642}
-  m_Father: {fileID: 471726}
+  m_Father: {fileID: 477716}
   m_RootOrder: 7
 --- !u!4 &447116
 Transform:
@@ -443,7 +459,7 @@ Transform:
   m_Children:
   - {fileID: 496654}
   - {fileID: 419576}
-  m_Father: {fileID: 471726}
+  m_Father: {fileID: 477716}
   m_RootOrder: 4
 --- !u!4 &457550
 Transform:
@@ -455,7 +471,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 2.5, z: 0}
   m_LocalScale: {x: 10, y: 35, z: 0}
   m_Children: []
-  m_Father: {fileID: 471726}
+  m_Father: {fileID: 477716}
   m_RootOrder: 0
 --- !u!4 &464724
 Transform:
@@ -477,6 +493,19 @@ Transform:
   m_GameObject: {fileID: 100332}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 0}
+  m_Children:
+  - {fileID: 477716}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+--- !u!4 &477716
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 122068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 457550}
@@ -487,7 +516,7 @@ Transform:
   - {fileID: 403384}
   - {fileID: 420276}
   - {fileID: 441066}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 471726}
   m_RootOrder: 0
 --- !u!4 &486258
 Transform:
@@ -499,7 +528,7 @@ Transform:
   m_LocalPosition: {x: 2.5, y: 0, z: 0}
   m_LocalScale: {x: 10, y: 35, z: 0}
   m_Children: []
-  m_Father: {fileID: 471726}
+  m_Father: {fileID: 477716}
   m_RootOrder: 1
 --- !u!4 &486294
 Transform:
@@ -511,7 +540,7 @@ Transform:
   m_LocalPosition: {x: -2.5, y: 0, z: 0}
   m_LocalScale: {x: 10, y: 35, z: 0}
   m_Children: []
-  m_Father: {fileID: 471726}
+  m_Father: {fileID: 477716}
   m_RootOrder: 3
 --- !u!4 &496654
 Transform:
@@ -847,6 +876,19 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: .00999999978, y: .140000001}
+--- !u!61 &6186110
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100332}
+  m_Enabled: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Size: {x: 5, y: 5}
 --- !u!61 &6188124
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -914,6 +956,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyCount: 0
   enemyPrefabsToSpawn: []
+  hasSpawnedEnemies: 0
   walls:
   - {fileID: 152666}
   - {fileID: 164994}
@@ -924,6 +967,7 @@ MonoBehaviour:
   - {fileID: 108872}
   - {fileID: 178514}
   - {fileID: 118906}
+  insideWrapper: {fileID: 122068}
 --- !u!114 &11413196
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1363,7 +1407,11 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 100332}

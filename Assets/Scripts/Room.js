@@ -6,6 +6,7 @@ import System.Collections.Generic;
 class Room extends MonoBehaviour {
   public var enemyCount: int;
   public var enemyPrefabsToSpawn: GameObject[];
+  public var hasSpawnedEnemies = false;
 
   private var spawnedEnemies = new List.<GameObject>();
 
@@ -17,6 +18,7 @@ class Room extends MonoBehaviour {
     for (var i = 0; i < enemyCount; i++) {
       spawnRandomEnemy();
     }
+    hasSpawnedEnemies = true;
   }
 
   function spawnEnemyAtIndex(index: int) {
@@ -50,7 +52,18 @@ class Room extends MonoBehaviour {
     spawnedEnemies.Clear();
   }
 
+  function animateIn() {
+    var animator = gameObject.GetComponent(Animator);
+    if (animator) {
+      animator.SetTrigger('animateIn');
+    }
+  }
+
   function onDidAnimateIn() {
     spawnEnemies();
+  }
+
+  function OnTriggerEnter2D(other: Collider2D) {
+    animateIn();
   }
 }
