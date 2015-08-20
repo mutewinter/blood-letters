@@ -88,5 +88,12 @@ class Player extends Character {
       Debug.Log('No status manager');
     }
   }
+
+  function animateAppearance() {
+    var animator = gameObject.GetComponent(Animator);
+    if (animator) {
+      animator.SetTrigger('playerAppear');
+    }
+  }
 }
 

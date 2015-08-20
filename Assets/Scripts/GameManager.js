@@ -12,7 +12,7 @@ public var hotSpot: Vector2 = Vector2.zero;
 
 private var mouse = Vector2.zero;
 private var currentStage = 1;
-private var player: GameObject;
+private var player: Player;
 private var statusManager: StatusManager;
 private var rooms = new List.<Room>();
 
@@ -36,6 +36,7 @@ function setupStage(stage: int) {
 
   player.transform.position = Vector2.zero;
   centerCameraOnPlayer();
+  player.animateAppearance();
 
   var enemyCount = Mathf.CeilToInt(Mathf.Log(stage, 2)) || 1;
   var enemyPrefabsToSpawn = enemyPrefabs;
@@ -78,8 +79,10 @@ function OnGUI() {
   );
 }
 
-function spawnPlayer() {
-  return Instantiate(playerPrefab, Vector3.zero, Quaternion.identity);
+function spawnPlayer() : Player {
+  var playerObject =
+    Instantiate(playerPrefab, Vector3.zero, Quaternion.identity);
+  return playerObject.GetComponent(Player);
 }
 
 function characterDied(character: Character) {
