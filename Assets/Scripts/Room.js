@@ -50,7 +50,7 @@ class Room extends MonoBehaviour {
     spawnedEnemies.Clear();
   }
 
-  function onAnimatedIn() {
+  function onDidAnimateIn() {
     spawnEnemies();
   }
 }

@@ -138,7 +138,7 @@ AnimationClip:
   m_GenerateMotionCurves: 0
   m_Events:
   - time: .933333337
-    functionName: onAnimatedIn
+    functionName: onDidAnimateIn
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
