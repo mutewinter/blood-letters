@@ -17,15 +17,6 @@ class Sword extends Skill {
     singleProjectileAbility.projectilePrefabName =
       'Assets/Prefabs/Sword.prefab';
     abilities.Add(singleProjectileAbility);
-    singleProjectileAbility.callback = swingRotation;
     super.Start();
-  }
-
-  function swingRotation(projectile: Projectile, previousPosition: Vector2) {
-    projectile.transform.rotation =
-      Quaternion.RotateTowards(
-        projectile.transform.rotation,
-        Quaternion.Euler(0, 0, -90), 1200 * Time.deltaTime
-    );
   }
 }

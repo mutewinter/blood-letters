@@ -12,6 +12,7 @@ GameObject:
   - 114: {fileID: 11420444}
   - 61: {fileID: 6177884}
   - 50: {fileID: 5026508}
+  - 95: {fileID: 9566344}
   m_Layer: 0
   m_Name: Sword
   m_TagString: Untagged
@@ -57,9 +58,26 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: .0549999997}
   serializedVersion: 2
   m_Size: {x: .0599999987, y: .109999999}
+--- !u!95 &9566344
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 178846}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8f1011562c61546fa8389d1d50f6fd7a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &11420444
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -75,11 +93,6 @@ MonoBehaviour:
   speed: 100
   shootable: {fileID: 0}
   callbackRate: .100000001
-  projectileOptions:
-    character: {fileID: 0}
-    direction: {x: 0, y: 0}
-    shouldDestroyOnHit: 0
-    baseDamage: 0
 --- !u!212 &21258146
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -121,6 +134,10 @@ Prefab:
       propertyPath: m_GravityScale
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 8f1011562c61546fa8389d1d50f6fd7a, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 178846}
