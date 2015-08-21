@@ -81,12 +81,18 @@ class Character extends MonoBehaviour {
   function OnTriggerEnter2D(other: Collider2D) {
     if (health <= 0) { return; }
 
-    var projectile = other.GetComponent.<Projectile>();
+    var projectile = other.GetComponent(Projectile);
+    // Support projectiles with a wrapper
+    // TODO Refactor so we don't have to do this. Perhaps every projectile
+    // should just have a wrapper.
+    if (!projectile) {
+      projectile = other.GetComponentInParent(Projectile);
+    }
     if (projectile) {
       projectile.processHit(this);
     }
 
-    var otherCharacter = other.GetComponent.<Character>();
+    var otherCharacter = other.GetComponent(Character);
     if (otherCharacter) {
       processMeleeHit(otherCharacter);
     }

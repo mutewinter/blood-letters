@@ -3,6 +3,8 @@
 import System.Collections.Generic;
 
 class Arc extends Projectile {
+  var distanceFromCharacter = 0.35;
+
   function Awake() {
     speed = 800;
     // Will be destroyed when the animation completes, but just in case -- we
@@ -13,7 +15,10 @@ class Arc extends Projectile {
   }
 
   function swing(projectileOptions: ProjectileOptions) {
-    transform.position.x += 0.15;
+    var direction = projectileOptions.direction;
+    var angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+    transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+    transform.position += direction.normalized * distanceFromCharacter;
     var animator = gameObject.GetComponent(Animator);
     if (animator) {
       animator.SetTrigger('swing');

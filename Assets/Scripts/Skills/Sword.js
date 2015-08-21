@@ -15,7 +15,7 @@ class Sword extends Skill {
     Color.TryParseHexString('ffffff', singleProjectileAbility.color);
     singleProjectileAbility.shouldDestroyOnHit = false;
     singleProjectileAbility.projectilePrefabName =
-      'Assets/Prefabs/Sword.prefab';
+      'Assets/Prefabs/SwordWrapper.prefab';
     abilities.Add(singleProjectileAbility);
     super.Start();
   }

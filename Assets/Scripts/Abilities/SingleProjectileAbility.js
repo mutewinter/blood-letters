@@ -38,6 +38,13 @@ class SingleProjectileAbility extends Ability {
     projectile.callback = callback;
     projectile.fire(projectileOptions);
 
-    projectile.GetComponent.<Renderer>().material.color = color;
+    var projectileRenderer = projectile.GetComponent(Renderer);
+    // Support projectiles with a wrapper
+    // TODO Refactor so we don't have to do this. Perhaps every projectile
+    // should just have a wrapper.
+    if (!projectileRenderer) {
+      projectileRenderer = projectile.GetComponentInChildren(Renderer);
+    }
+    projectileRenderer.material.color = color;
   }
 }
