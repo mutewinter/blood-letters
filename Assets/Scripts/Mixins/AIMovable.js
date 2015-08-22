@@ -19,9 +19,14 @@ class AIMovable extends MonoBehaviour {
   function Update() {
     if (Time.time > nextMove) {
       nextMove = Time.time + moveRate;
+      // We stop each time so that the velocity from AddForce doesn't become
+      // cumulative.
+      stopMovement();
 
       var forceDirection = playerFinder.forceDirectionToPlayer();
-      stopMovement();
+      // Force direction is zero when the player can't be found or the player
+      // is at the start position. Don't do anothing in this case.
+      if (forceDirection == Vector2.zero) { return; }
       _rigidbody2D.AddForce(forceDirection * moveSpeed);
     }
   }
