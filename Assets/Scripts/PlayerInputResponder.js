@@ -16,7 +16,7 @@ function Update() {
     var attackDirection = (Input.mousePosition - playerPosition).normalized;
     attackDirection.z = 0;
 
-    player.attack(attackDirection);
+    player.attack(attackDirection.normalized);
   }
 
   if (Input.GetButton('Horizontal') || Input.GetButton('Vertical')) {
