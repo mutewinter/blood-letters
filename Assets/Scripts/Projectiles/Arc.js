@@ -18,6 +18,10 @@ class Arc extends Projectile {
     var direction = projectileOptions.direction;
     var angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
     transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+    // Flip sprite if player is attacking to the left
+    if (direction.x <= 0) {
+      transform.rotation = Quaternion.AngleAxis(180, Vector3.up);
+    }
     transform.position += direction.normalized * distanceFromCharacter;
     var animator = gameObject.GetComponent(Animator);
     if (animator) {
