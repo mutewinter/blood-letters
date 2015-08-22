@@ -9,22 +9,18 @@ class AIMovable extends MonoBehaviour {
   private var nextMove : float = 0;
   private var player: Player;
   private var _rigidbody2D: Rigidbody2D;
+  private var playerFinder: PlayerFinder;
 
   function Start() {
     _rigidbody2D = gameObject.GetComponent.<Rigidbody2D>();
+    playerFinder = gameObject.AddComponent(PlayerFinder);
   }
 
   function Update() {
     if (Time.time > nextMove) {
       nextMove = Time.time + moveRate;
 
-      if (!player) {
-        player = GameObject.FindWithTag('Player').GetComponent(Player);
-      }
-
-      var forceDirection =
-        (player.transform.position - transform.position).normalized;
-
+      var forceDirection = playerFinder.forceDirectionToPlayer();
       stopMovement();
       _rigidbody2D.AddForce(forceDirection * moveSpeed);
     }
