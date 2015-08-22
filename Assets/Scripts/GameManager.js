@@ -41,6 +41,7 @@ function setupStage(stage: int) {
   var enemyCount = Mathf.CeilToInt(Mathf.Log(stage, 2)) || 1;
   var enemyPrefabsToSpawn = enemyPrefabs;
 
+  // Only spawn goblins on the first stage.
   if (stage == 1) {
     enemyPrefabsToSpawn = [enemyPrefabsToSpawn[0]];
   }
