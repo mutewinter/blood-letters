@@ -6,7 +6,7 @@ class Goblin extends Character {
   function Start () {
     worthExperience = 45;
     health = 5;
-    moveSpeed = 10;
+    moveSpeed = 20;
     moveRate = 0.8;
     super.Start();
     dropsSkills.possibleSkillsDropped.Add(FireWave);

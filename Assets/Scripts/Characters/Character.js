@@ -61,14 +61,12 @@ class Character extends MonoBehaviour {
     aiMovable = gameObject.AddComponent(AIMovable);
     aiMovable.moveRate = moveRate;
     aiMovable.moveSpeed = moveSpeed;
-    aiMovable.target = this;
 
     if (isEnemy()) {
       // DropsSkills
       dropsSkills = gameObject.AddComponent(DropsSkills);
       // All characters can drop health.
       dropsSkills.possibleSkillsDropped.Add(Health);
-      aiMovable.target = this;
     }
   }
 

@@ -8,7 +8,7 @@ class Kobold extends Character {
   function Start() {
     worthExperience = 55;
     health = 15;
-    moveSpeed = 5;
+    moveSpeed = 10;
     moveRate = 0.8;
     var skill = gameObject.AddComponent(Bow);
     skill.damage = 1;

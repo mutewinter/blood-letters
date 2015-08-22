@@ -4,26 +4,40 @@ class AIMovable extends MonoBehaviour {
   // Public variables
   public var moveRate : float = 0;
   public var moveSpeed : float = 0;
-  public var target : Character;
 
   // Private variables
   private var nextMove : float = 0;
+  private var player: Player;
+  private var _rigidbody2D: Rigidbody2D;
+
+  function Start() {
+    _rigidbody2D = gameObject.GetComponent.<Rigidbody2D>();
+  }
 
   function Update() {
     if (Time.time > nextMove) {
       nextMove = Time.time + moveRate;
-      var moveDirection = new Vector2(
-        Random.Range(-1F, 1F),
-        Random.Range(-1F, 1F)
-      );
-      var rigidbody2D = target.GetComponent.<Rigidbody2D>();
-      rigidbody2D.AddForce(moveDirection * moveSpeed);
+
+      if (!player) {
+        player = GameObject.FindWithTag('Player').GetComponent(Player);
+      }
+
+      var forceDirection =
+        (player.transform.position - transform.position).normalized;
+
+      stopMovement();
+      _rigidbody2D.AddForce(forceDirection * moveSpeed);
     }
   }
 
   function OnDisable() {
-    var rigidbody2D = target.GetComponent.<Rigidbody2D>();
-    rigidbody2D.velocity = Vector2.zero;
-    rigidbody2D.angularVelocity = 0;
+    stopMovement();
+  }
+
+  function stopMovement() {
+    if (_rigidbody2D) {
+      _rigidbody2D.velocity = Vector2.zero;
+      _rigidbody2D.angularVelocity = 0;
+    }
   }
 }

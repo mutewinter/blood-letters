@@ -14,7 +14,7 @@ class Elephant extends Character {
     worthExperience = 200;
     health = 30;
     startingHealth = health;
-    moveSpeed = 10;
+    moveSpeed = 20;
     moveRate = 0.8;
 
     // Track player so we can determine distance
