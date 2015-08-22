@@ -13,6 +13,8 @@ class PlayerFinder extends MonoBehaviour {
     if (player) {
       return (player.transform.position - transform.position).normalized;
     } else {
+      // Find a way to return something other than zero to singal that the
+      // player wasn't found.
       return Vector2.zero;
     }
   }
