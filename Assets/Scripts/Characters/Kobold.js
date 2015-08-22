@@ -4,8 +4,10 @@ class Kobold extends Character {
   private var nextFire : float = 0;
   private var bulletSpeed : float = 100;
   private var fireRate : float = 0.8;
+  private var playerFinder: PlayerFinder;
 
   function Start() {
+    playerFinder = gameObject.AddComponent(PlayerFinder);
     worthExperience = 55;
     health = 15;
     moveSpeed = 10;
@@ -19,11 +21,11 @@ class Kobold extends Character {
   function Update () {
     if (Time.time > nextFire) {
       nextFire = Time.time + fireRate;
-      var attackDirection = new Vector2(
-        Random.Range(-1F, 1F),
-        Random.Range(-1F, 1F)
-      );
-      attack(attackDirection);
+      var forceDirection = playerFinder.forceDirectionToPlayer();
+      // Force direction is zero when the player can't be found or the player
+      // is at the start position. Don't do anothing in this case.
+      if (forceDirection == Vector2.zero) { return; }
+      attack(forceDirection);
     }
   }
 }
