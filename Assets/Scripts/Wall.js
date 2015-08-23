@@ -7,7 +7,7 @@ function reflectCollider2D(other: Collider2D) {
     // TODO we should use some Quaternion functions to determine the angle
     // with more precision. This setup only supports vertical and horizontal
     // walls.
-    if (transform.rotation.w < 1) {
+    if (transform.rotation.w >= 1) {
       rigidbody2D.velocity = Vector2.Reflect(rigidbody2D.velocity, Vector2.up);
     } else {
       rigidbody2D.velocity = Vector2.Reflect(

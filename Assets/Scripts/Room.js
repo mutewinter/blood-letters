@@ -26,8 +26,9 @@ class Room extends MonoBehaviour {
 
     // Room is added to a room object.
     var position = transform.position;
-    position.x += Random.Range(-2.0F, 2.0F);
-    position.y += Random.Range(-2.0F, 2.0F);
+    // TODO Baset his off room size
+    position.x += Random.Range(-1.0F, 1.0F);
+    position.y += Random.Range(-1.0F, 1.0F);
 
     var enemyObject = Instantiate(enemyPrefab, position, Quaternion.identity);
     spawnedEnemies.Add(enemyObject);

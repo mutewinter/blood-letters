@@ -15,6 +15,8 @@ private var currentStage = 1;
 private var player: Player;
 private var statusManager: StatusManager;
 private var rooms = new List.<Room>();
+// TODO make it not necessary to hard code this.
+private var roomWidth = 3.2;
 
 function Start() {
   var canvas = GameObject.FindWithTag('HUD');
@@ -58,7 +60,7 @@ function setupStage(stage: int) {
     Vector2.zero, doorDirection, enemyPrefabsToSpawn, enemyCount
   );
 
-  var secondRoomPosition = doorDirection * 5;
+  var secondRoomPosition = doorDirection * roomWidth;
 
   makeSquareRoomWithoutWall(
     secondRoomPosition, -doorDirection, enemyPrefabsToSpawn, enemyCount
