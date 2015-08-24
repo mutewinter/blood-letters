@@ -48,23 +48,46 @@ function setupStage(stage: int) {
     enemyPrefabsToSpawn = [enemyPrefabsToSpawn[0]];
   }
 
-  var directions = [
+  var directions = new List.<Vector2>([
     Vector2.up,
     Vector2.right,
     Vector2.down,
     Vector2.left
-  ];
-  var doorDirection = directions[Random.Range(0, directions.length)];
+  ]);
 
-  makeSquareRoomWithDoor(
-    Vector2.zero, doorDirection, enemyPrefabsToSpawn, enemyCount
-  );
+  var roomAmount = stage;
+  var lastDoorDirection = Vector2.zero;
+  var lastRoomPosition = Vector2.zero;
 
-  var secondRoomPosition = doorDirection * roomWidth;
+  for (var i = 0; i < roomAmount; i++) {
+    var possibleDirections = new List.<Vector2>(directions);
+    // Rooms can't go back on themselves
+    possibleDirections.Remove(-lastDoorDirection);
+    var doorDirection = possibleDirections[
+      Random.Range(0, possibleDirections.Count)
+    ];
+    var roomPosition = lastRoomPosition + (lastDoorDirection * roomWidth);
+    var squareRoom = makeSquareRoom(
+      roomPosition, enemyPrefabsToSpawn, enemyCount
+    );
 
-  makeSquareRoomWithoutWall(
-    secondRoomPosition, -doorDirection, enemyPrefabsToSpawn, enemyCount
-  );
+    if (1 == roomAmount) {
+      // No doors when there's only one room.
+    } else if (i == 0) {
+      // First room, one door
+      squareRoom.addDoor(doorDirection);
+    } else if (i == (roomAmount - 1)) {
+      // Last room, all walls, except no wall towards last door.
+      squareRoom.removeWall(-lastDoorDirection);
+    } else {
+      // In between room, two doors.
+      squareRoom.removeWall(-lastDoorDirection);
+      squareRoom.addDoor(doorDirection);
+    }
+
+    lastRoomPosition = roomPosition;
+    lastDoorDirection = doorDirection;
+  }
 }
 
 function Update() {
@@ -142,26 +165,6 @@ function makeSquareRoom(
   rooms.Add(squareRoom);
 
   return squareRoom;
-}
-
-function makeSquareRoomWithDoor(
-  position: Vector2,
-  doorPosition: Vector2,
-  enemyPrefabsToSpawn: GameObject[],
-  enemyCount: int
-) {
-  var squareRoom = makeSquareRoom(position, enemyPrefabsToSpawn, enemyCount);
-  squareRoom.addDoor(doorPosition);
-}
-
-function makeSquareRoomWithoutWall(
-  position: Vector2,
-  emptyWallPosition: Vector2,
-  enemyPrefabsToSpawn: GameObject[],
-  enemyCount: int
-) {
-  var squareRoom = makeSquareRoom(position, enemyPrefabsToSpawn, enemyCount);
-  squareRoom.removeWall(emptyWallPosition);
 }
 
 function spawnedEnemyCount() : int {
