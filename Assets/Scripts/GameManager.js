@@ -16,7 +16,7 @@ private var player: Player;
 private var statusManager: StatusManager;
 private var rooms = new List.<Room>();
 // TODO make it not necessary to hard code this.
-private var roomWidth = 3.2;
+private var roomWidth = 3.3;
 
 function Start() {
   var canvas = GameObject.FindWithTag('HUD');
