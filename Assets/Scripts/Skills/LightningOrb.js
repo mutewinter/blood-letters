@@ -27,6 +27,7 @@ class LightningOrb extends Skill {
   }
 
   function wiggle(projectile: Projectile, previousPosition: Vector2) {
+    if (!this) { return; }
     if (previousPosition == Vector2.zero) { return; }
 
     var rigidbody2D = projectile.GetComponent.<Rigidbody2D>();
