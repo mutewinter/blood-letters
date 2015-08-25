@@ -9,6 +9,7 @@ class Character extends MonoBehaviour {
   public var worthExperience = 10;
   public var bulletPrefab: GameObject;
   public var moveRate : float = Mathf.Infinity;
+  public var maxHealth = 10;
 
   // -------------------
   // Getters and Setters
@@ -164,7 +165,14 @@ class Character extends MonoBehaviour {
   }
 
   function heal(healAmount: int) {
-    health += healAmount;
+    var finalHealAmount = healAmount;
+    // Can't go past max health
+    if ( (health + healAmount) > maxHealth ) {
+      finalHealAmount = maxHealth - health;
+    }
+    // Don't show healing for zero.
+    if (finalHealAmount == 0) { return; }
+    health += finalHealAmount;
     showsPopupText.show(healAmount, transform.position, Color.green);
   }
 

@@ -31,14 +31,14 @@ class Player extends Character {
 
   function Awake() {
     super.Awake();
+    maxHealth = 5;
+    moveSpeed = 2.0;
     showsPopupText.defaultColor = Color.red;
   }
 
   function Start() {
     var skill = gameObject.AddComponent(Bow);
     skill.damage = 1;
-
-    moveSpeed = 2.0;
     updateStatusManager();
   }
 
@@ -84,6 +84,7 @@ class Player extends Character {
       statusManager.experience = totalExperience;
       statusManager.experienceNeededForNextLevel = level * 100;
       statusManager.health = health;
+      statusManager.maxHealth = maxHealth;
     } else {
       Debug.Log('No status manager');
     }

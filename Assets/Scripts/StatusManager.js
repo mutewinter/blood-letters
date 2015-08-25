@@ -3,10 +3,15 @@
 class StatusManager extends MonoBehaviour {
   public var hudText:       UnityEngine.UI.Text;
   public var titleCardText: UnityEngine.UI.Text;
+  public var healthBar:     UnityEngine.UI.Image;
 
   var _health = 0;
   function get health() { return _health; }
   function set health(value: int) { _health = value; update(); }
+
+  var _maxHealth = 0;
+  function get maxHealth() { return _maxHealth; }
+  function set maxHealth(value: int) { _maxHealth = value; update(); }
 
   var _level = 0;
   function get level() { return _level; }
@@ -36,6 +41,16 @@ class StatusManager extends MonoBehaviour {
     _experienceNeededForNextLevel = value; update();
   }
 
+  // -----------------
+  // Private Variables
+  // -----------------
+
+  private var startingHealthBarSize: Vector2;
+
+  // ---------
+  // Functions
+  // ---------
+
   function showTitle(title: String) {
     showTitle(title, Color.white);
   }
@@ -50,11 +65,19 @@ class StatusManager extends MonoBehaviour {
   }
 
   function Start() {
+    startingHealthBarSize = healthBar.rectTransform.sizeDelta;
     update();
   }
 
   function update() {
+    // TODO put in health bar
     var healthText = String.Format('Health: {0}', health);
+
+    if (maxHealth > 0) {
+      var newHealthBarSize = startingHealthBarSize;
+      newHealthBarSize.x *= (parseFloat(health) / parseFloat(maxHealth));
+      healthBar.rectTransform.sizeDelta = newHealthBarSize;
+    }
 
     var levelText = String.Format(
       'Level: {0} ({1}/{2} XP)', level, experience,
@@ -75,7 +98,6 @@ class StatusManager extends MonoBehaviour {
     var killsText = String.Format('Kills: {0}', kills);
 
     hudText.text = new Array([
-      healthText,
       levelText,
       damageText,
       killsText
