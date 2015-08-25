@@ -3,6 +3,7 @@
 class StatusManager extends MonoBehaviour {
   public var hudText:       UnityEngine.UI.Text;
   public var titleCardText: UnityEngine.UI.Text;
+  public var healthText:    UnityEngine.UI.Text;
   public var healthBar:     UnityEngine.UI.Image;
 
   var _health = 0;
@@ -70,13 +71,11 @@ class StatusManager extends MonoBehaviour {
   }
 
   function update() {
-    // TODO put in health bar
-    var healthText = String.Format('Health: {0}', health);
-
     if (maxHealth > 0) {
       var newHealthBarSize = startingHealthBarSize;
       newHealthBarSize.x *= (parseFloat(health) / parseFloat(maxHealth));
       healthBar.rectTransform.sizeDelta = newHealthBarSize;
+      healthText.text = String.Format('{0}/{1}', health, maxHealth);
     }
 
     var levelText = String.Format(
