@@ -10,6 +10,9 @@ class Character extends MonoBehaviour {
   public var bulletPrefab: GameObject;
   public var moveRate : float = Mathf.Infinity;
   public var maxHealth = 10;
+  public var isImmuneToDamage = false;
+  public var immuneAfterDamageDuration = 0.5;
+  public var becomesImmuneAfterHit = false;
 
   // -------------------
   // Getters and Setters
@@ -145,23 +148,30 @@ class Character extends MonoBehaviour {
 
   function takeDamage(damage: int, otherCharacter: Character) {
     if (damage <= 0) { return; }
+    if (isImmuneToDamage) { return; }
+
+    yield immunityAfterHit();
 
     showsPopupText.show(damage, transform.position);
-
     health -= damage;
 
     if (health <= 0) {
+      // Died!
       otherCharacter.gainExperience(worthExperience);
       otherCharacter.kills++;
-    }
-
-    if (health <= 0) {
-      // Died!
       die();
     } else {
       // Damaged
       animateHit();
     }
+  }
+
+  function immunityAfterHit() {
+    if (!becomesImmuneAfterHit) { return; }
+
+    isImmuneToDamage = true;
+    yield WaitForSeconds(immuneAfterDamageDuration);
+    isImmuneToDamage = false;
   }
 
   function heal(healAmount: int) {
