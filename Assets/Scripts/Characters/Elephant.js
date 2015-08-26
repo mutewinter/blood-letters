@@ -9,6 +9,7 @@ class Elephant extends Character {
   private var nextPlayerCheck : float = 0;
   private var playerCheckFrequency : float = 0.5;
   private var startingHealth : int;
+  private var hasTakenDamage = false;
 
   function Start () {
     worthExperience = 200;
@@ -55,6 +56,7 @@ class Elephant extends Character {
   }
 
   function disableAIMovement() {
+    if (hasTakenDamage) { return; }
     aiMovable.enabled = false;
   }
 
@@ -62,8 +64,9 @@ class Elephant extends Character {
     aiMovable.enabled = true;
   }
 
-  function takeDamage(otherCharacter: Character) {
+  function takeDamage(damage: int, otherCharacter: Character) {
+    hasTakenDamage = true;
     enableAIMovement();
-    super.takeDamage(otherCharacter.damage, otherCharacter);
+    super.takeDamage(damage, otherCharacter);
   }
 }
