@@ -93,7 +93,7 @@ class Character extends MonoBehaviour {
 
     var otherCharacter = other.GetComponent(Character);
     if (otherCharacter) {
-      processMeleeHit(otherCharacter);
+      meleeHitByOther(otherCharacter);
     }
   }
 
@@ -133,14 +133,14 @@ class Character extends MonoBehaviour {
   // For subclasses to override.
   function onDied() { }
 
-  function processMeleeHit(otherCharacter: Character) {
+  function meleeHitByOther(otherCharacter: Character) {
     // Enemies don't fight each other
     if (otherCharacter.transform.tag == 'enemy' &&
         transform.transform.tag == 'enemy') {
       return;
     }
 
-    takeDamage(damage + skillDamage, otherCharacter);
+    takeDamage(otherCharacter.damage, otherCharacter);
   }
 
   function takeDamage(damage: int, otherCharacter: Character) {
