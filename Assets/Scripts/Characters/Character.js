@@ -150,8 +150,6 @@ class Character extends MonoBehaviour {
     if (damage <= 0) { return; }
     if (isImmuneToDamage) { return; }
 
-    yield immunityAfterHit();
-
     showsPopupText.show(damage, transform.position);
     health -= damage;
 
@@ -164,11 +162,13 @@ class Character extends MonoBehaviour {
       // Damaged
       animateHit();
     }
+
+    if (becomesImmuneAfterHit) {
+      yield immunityAfterHit();
+    }
   }
 
   function immunityAfterHit() {
-    if (!becomesImmuneAfterHit) { return; }
-
     isImmuneToDamage = true;
     yield WaitForSeconds(immuneAfterDamageDuration);
     isImmuneToDamage = false;
