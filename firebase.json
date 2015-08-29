@@ -1,0 +1,9 @@
+{
+  "firebase": "blood-letters",
+  "public": "dist/blood-letters-web",
+  "ignore": [
+    "firebase.json",
+    "**/.*",
+    "**/node_modules/**"
+  ]
+}
