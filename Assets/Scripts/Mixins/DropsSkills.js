@@ -9,8 +9,8 @@ class DropsSkills extends MonoBehaviour {
   private var skillDropPrefab: GameObject;
 
   function Start() {
-    skillDropPrefab = AssetDatabase.LoadAssetAtPath(
-      'Assets/Prefabs/SkillDrop.prefab',
+    skillDropPrefab = Resources.Load(
+      'SkillDrop',
       typeof(GameObject)
     );
     if (!skillDropPrefab) {

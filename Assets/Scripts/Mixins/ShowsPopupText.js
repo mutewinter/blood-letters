@@ -6,8 +6,8 @@ class ShowsPopupText extends MonoBehaviour {
   private var damageTextPrefab : GameObject;
 
   function Awake() {
-    damageTextPrefab = AssetDatabase.LoadAssetAtPath(
-      'Assets/Prefabs/DamageText.prefab',
+    damageTextPrefab = Resources.Load(
+      'DamageText',
       typeof(GameObject)
     );
     if (!damageTextPrefab) {

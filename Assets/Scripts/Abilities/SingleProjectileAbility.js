@@ -4,13 +4,13 @@ class SingleProjectileAbility extends Ability {
   var damage = 0;
 
   public var projectilePrefab: GameObject;
-  public var projectilePrefabName = 'Assets/Prefabs/Bullet.prefab';
+  public var projectilePrefabName = 'bullet';
   public var color = Color.magenta;
   public var callback: Function;
 
   function Start() {
     if (projectilePrefabName) {
-      projectilePrefab = AssetDatabase.LoadAssetAtPath(
+      projectilePrefab = Resources.Load(
         projectilePrefabName,
         typeof(GameObject)
       );

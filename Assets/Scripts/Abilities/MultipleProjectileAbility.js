@@ -4,14 +4,14 @@ class MultipleProjectileAbility extends Ability {
   var damage = 0;
 
   public var projectilePrefab: GameObject;
-  public var projectilePrefabName = 'Assets/Prefabs/Bullet.prefab';
+  public var projectilePrefabName = 'bullet';
   public var color = Color.magenta;
   public var projectileCount = 3;
   public var spreadAngle = 10;
 
   function Start() {
     if (projectilePrefabName) {
-      projectilePrefab = AssetDatabase.LoadAssetAtPath(
+      projectilePrefab = Resources.Load(
         projectilePrefabName,
         typeof(GameObject)
       );

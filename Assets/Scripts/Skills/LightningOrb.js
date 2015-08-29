@@ -20,8 +20,7 @@ class LightningOrb extends Skill {
     Color.TryParseHexString('96BDD0', singleProjectileAbility.color);
     abilities.Add(singleProjectileAbility);
     singleProjectileAbility.shouldDestroyOnHit = false;
-    singleProjectileAbility.projectilePrefabName =
-      'Assets/Prefabs/LightningOrb.prefab';
+    singleProjectileAbility.projectilePrefabName = 'LightningOrb';
     singleProjectileAbility.callback = wiggle;
     super.Start();
   }
